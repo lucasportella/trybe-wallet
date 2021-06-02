@@ -3,6 +3,8 @@
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  totalExpenses: 0,
+  currentCurrency: 'BRL',
 };
 
 function wallet(state = INITIAL_STATE, action) {
