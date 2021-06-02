@@ -30,3 +30,9 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Wallet);
+
+Wallet.propTypes = {
+  email: PropTypes.string.isRequired,
+  totalExpenses: PropTypes.number.isRequired,
+  currentCurrency: PropTypes.string.isRequired,
+};
