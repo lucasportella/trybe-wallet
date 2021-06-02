@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { loginSubmit } from '../actions/index';
 
 class Login extends React.Component {
   constructor() {
@@ -28,6 +30,7 @@ class Login extends React.Component {
 
   render() {
     const { email, password } = this.state;
+    const { loginSubmitAction } = this.props;
     return (
       <form>
         <label htmlFor="id-email">
@@ -52,10 +55,21 @@ class Login extends React.Component {
             name="password"
           />
         </label>
-        <button type="button" disabled id="btn">Entrar</button>
+        <button
+          type="button"
+          disabled
+          id="btn"
+          onClick={ () => loginSubmitAction(email) }
+        >
+          Entrar
+        </button>
       </form>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({
+  loginSubmitAction: (email) => dispatch(loginSubmit(email)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);
