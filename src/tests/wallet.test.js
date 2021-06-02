@@ -58,164 +58,164 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
     });
   });
   
-  // describe('4 - Desenvolva um formulário para adicionar uma despesa contendo as seguintes características:', () => {
-  //   test('Um campo para adicionar o valor da despesa', async () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira');
-  //     const valueInput = await screen.findByTestId('value-input');
+  describe('4 - Desenvolva um formulário para adicionar uma despesa contendo as seguintes características:', () => {
+    test('Um campo para adicionar o valor da despesa', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const valueInput = await screen.findByTestId('value-input');
   
-  //     expect(valueInput).toBeInTheDocument();
-  //   });
+      expect(valueInput).toBeInTheDocument();
+    });
   
-  //   test('Um campo para adicionar a descrição da despesa', async () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira');
-  //     const descriptionInput = await screen.findByTestId('description-input');
+    test('Um campo para adicionar a descrição da despesa', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const descriptionInput = await screen.findByTestId('description-input');
   
-  //     expect(descriptionInput).toBeInTheDocument();
-  //   });
+      expect(descriptionInput).toBeInTheDocument();
+    });
   
-  //   test('Um campo para selecionar em qual moeda será registrada a despesa', async () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira');
-  //     const currencyInput = await screen.findByTestId('currency-input');
-  //     const USD = screen.getByTestId('USD');
-  //     const CAD = screen.getByTestId('CAD');
-  //     const EUR = screen.getByTestId('EUR');
-  //     const GBP = screen.getByTestId('GBP');
-  //     const ARS = screen.getByTestId('ARS');
-  //     const BTC = screen.getByTestId('BTC');
-  //     const LTC = screen.getByTestId('LTC');
-  //     const JPY = screen.getByTestId('JPY');
-  //     const CHF = screen.getByTestId('CHF');
-  //     const AUD = screen.getByTestId('AUD');
-  //     const CNY = screen.getByTestId('CNY');
-  //     const ILS = screen.getByTestId('ILS');
-  //     const ETH = screen.getByTestId('ETH');
-  //     const XRP = screen.getByTestId('XRP');
-  //     const USDT = screen.queryByText(/USDT/g);
+    test('Um campo para selecionar em qual moeda será registrada a despesa', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const currencyInput = await screen.findByTestId('currency-input');
+      const USD = screen.getByTestId('USD');
+      const CAD = screen.getByTestId('CAD');
+      const EUR = screen.getByTestId('EUR');
+      const GBP = screen.getByTestId('GBP');
+      const ARS = screen.getByTestId('ARS');
+      const BTC = screen.getByTestId('BTC');
+      const LTC = screen.getByTestId('LTC');
+      const JPY = screen.getByTestId('JPY');
+      const CHF = screen.getByTestId('CHF');
+      const AUD = screen.getByTestId('AUD');
+      const CNY = screen.getByTestId('CNY');
+      const ILS = screen.getByTestId('ILS');
+      const ETH = screen.getByTestId('ETH');
+      const XRP = screen.getByTestId('XRP');
+      const USDT = screen.queryByText(/USDT/g);
   
-  //     expect(mockedExchange).toBeCalled();
-  //     expect(mockedExchange).toBeCalledWith('https://economia.awesomeapi.com.br/json/all');
-  //     expect(currencyInput).toBeInTheDocument();
-  //     expect(USD).toBeInTheDocument();
-  //     expect(CAD).toBeInTheDocument();
-  //     expect(EUR).toBeInTheDocument();
-  //     expect(GBP).toBeInTheDocument();
-  //     expect(ARS).toBeInTheDocument();
-  //     expect(BTC).toBeInTheDocument();
-  //     expect(LTC).toBeInTheDocument();
-  //     expect(JPY).toBeInTheDocument();
-  //     expect(CHF).toBeInTheDocument();
-  //     expect(AUD).toBeInTheDocument();
-  //     expect(CNY).toBeInTheDocument();
-  //     expect(ILS).toBeInTheDocument();
-  //     expect(ETH).toBeInTheDocument();
-  //     expect(XRP).toBeInTheDocument();
-  //     expect(USDT).not.toBeInTheDocument();
-  //   });
+      expect(mockedExchange).toBeCalled();
+      expect(mockedExchange).toBeCalledWith('https://economia.awesomeapi.com.br/json/all');
+      expect(currencyInput).toBeInTheDocument();
+      expect(USD).toBeInTheDocument();
+      expect(CAD).toBeInTheDocument();
+      expect(EUR).toBeInTheDocument();
+      expect(GBP).toBeInTheDocument();
+      expect(ARS).toBeInTheDocument();
+      expect(BTC).toBeInTheDocument();
+      expect(LTC).toBeInTheDocument();
+      expect(JPY).toBeInTheDocument();
+      expect(CHF).toBeInTheDocument();
+      expect(AUD).toBeInTheDocument();
+      expect(CNY).toBeInTheDocument();
+      expect(ILS).toBeInTheDocument();
+      expect(ETH).toBeInTheDocument();
+      expect(XRP).toBeInTheDocument();
+      expect(USDT).not.toBeInTheDocument();
+    });
   
-  //   test('Um campo para selecionar qual método de pagamento será utilizado', async () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira');
-  //     const methodInput = await screen.findByTestId('method-input');
-  //     const moneyOption = screen.getByText(/Dinheiro/);
-  //     const creditOption = screen.getByText(/Cartão de crédito/);
-  //     const debitOption = screen.getByText(/Cartão de débito/);
+    test('Um campo para selecionar qual método de pagamento será utilizado', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const methodInput = await screen.findByTestId('method-input');
+      const moneyOption = screen.getByText(/Dinheiro/);
+      const creditOption = screen.getByText(/Cartão de crédito/);
+      const debitOption = screen.getByText(/Cartão de débito/);
   
-  //     expect(methodInput).toBeInTheDocument();
-  //     expect(moneyOption).toBeInTheDocument();
-  //     expect(creditOption).toBeInTheDocument();
-  //     expect(debitOption).toBeInTheDocument();
-  //   });
+      expect(methodInput).toBeInTheDocument();
+      expect(moneyOption).toBeInTheDocument();
+      expect(creditOption).toBeInTheDocument();
+      expect(debitOption).toBeInTheDocument();
+    });
   
-  //   test('Um campo para selecionar uma categoria (tag) para a despesa.', async () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira');
-  //     const tagInput = await screen.findByTestId('tag-input');
-  //     const foodOption = screen.getByText(/Alimentação/);
-  //     const funOption = screen.getByText(/Lazer/);
-  //     const workOption = screen.getByText(/Trabalho/);
-  //     const transportOption = screen.getByText(/Transporte/);
-  //     const healthOption = screen.getByText(/Saúde/);
+    test('Um campo para selecionar uma categoria (tag) para a despesa.', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const tagInput = await screen.findByTestId('tag-input');
+      const foodOption = screen.getByText(/Alimentação/);
+      const funOption = screen.getByText(/Lazer/);
+      const workOption = screen.getByText(/Trabalho/);
+      const transportOption = screen.getByText(/Transporte/);
+      const healthOption = screen.getByText(/Saúde/);
   
-  //     expect(tagInput).toBeInTheDocument();
-  //     expect(foodOption).toBeInTheDocument();
-  //     expect(funOption).toBeInTheDocument();
-  //     expect(workOption).toBeInTheDocument();
-  //     expect(transportOption).toBeInTheDocument();
-  //     expect(healthOption).toBeInTheDocument();
-  //   });
+      expect(tagInput).toBeInTheDocument();
+      expect(foodOption).toBeInTheDocument();
+      expect(funOption).toBeInTheDocument();
+      expect(workOption).toBeInTheDocument();
+      expect(transportOption).toBeInTheDocument();
+      expect(healthOption).toBeInTheDocument();
+    });
   
-  //   test('Um botão com o texto \'Adicionar despesa\' que salva as informações da despesa no estado global e atualiza a soma de despesas no header', async () => {
-  //     const { store } = renderWithRouterAndStore(<Wallet />, '/carteira');
-  //     const addButton = await screen.findByText(/Adicionar despesa/i);
-  //     const valueInput = await screen.findByTestId('value-input');
-  //     const currencyInput = await screen.findByTestId('currency-input');
-  //     const methodInput = await screen.findByTestId('method-input');
-  //     const tagInput = await screen.findByTestId('tag-input');
-  //     const descriptionInput = await screen.findByTestId('description-input');
+    test('Um botão com o texto \'Adicionar despesa\' que salva as informações da despesa no estado global e atualiza a soma de despesas no header', async () => {
+      const { store } = renderWithRouterAndStore(<Wallet />, '/carteira');
+      const addButton = await screen.findByText(/Adicionar despesa/i);
+      const valueInput = await screen.findByTestId('value-input');
+      const currencyInput = await screen.findByTestId('currency-input');
+      const methodInput = await screen.findByTestId('method-input');
+      const tagInput = await screen.findByTestId('tag-input');
+      const descriptionInput = await screen.findByTestId('description-input');
   
-  //     expect(addButton).toBeInTheDocument();
+      expect(addButton).toBeInTheDocument();
   
-  //     userEvent.type(valueInput, '10');
-  //     userEvent.selectOptions(currencyInput, 'USD');
-  //     userEvent.selectOptions(methodInput, 'Cartão de crédito');
-  //     userEvent.selectOptions(tagInput, 'Lazer');
-  //     userEvent.type(descriptionInput, 'Dez dólares');
-  //     fireEvent.click(addButton);
-  //     expect(mockedExchange).toBeCalledTimes(2);
+      userEvent.type(valueInput, '10');
+      userEvent.selectOptions(currencyInput, 'USD');
+      userEvent.selectOptions(methodInput, 'Cartão de crédito');
+      userEvent.selectOptions(tagInput, 'Lazer');
+      userEvent.type(descriptionInput, 'Dez dólares');
+      fireEvent.click(addButton);
+      expect(mockedExchange).toBeCalledTimes(2);
   
-  //     const expectedStateExpense = [
-  //       {
-  //         id: 0,
-  //         value: '10',
-  //         currency: 'USD',
-  //         method: 'Cartão de crédito',
-  //         tag: 'Lazer',
-  //         description: 'Dez dólares',
-  //         exchangeRates: mockData,
-  //       },
-  //     ];
+      const expectedStateExpense = [
+        {
+          id: 0,
+          value: '10',
+          currency: 'USD',
+          method: 'Cartão de crédito',
+          tag: 'Lazer',
+          description: 'Dez dólares',
+          exchangeRates: mockData,
+        },
+      ];
   
-  //     await waitFor(() => {
-  //       expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
-  //     });
-  //     expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense);
+      await waitFor(() => {
+        expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
+      });
+      expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense);
   
-  //     userEvent.type(valueInput, '20');
-  //     userEvent.selectOptions(currencyInput, 'EUR');
-  //     userEvent.selectOptions(methodInput, 'Cartão de débito');
-  //     userEvent.selectOptions(tagInput, 'Trabalho');
-  //     userEvent.type(descriptionInput, 'Vinte euros');
-  //     fireEvent.click(addButton);
-  //     expect(mockedExchange).toBeCalledTimes(3);
+      userEvent.type(valueInput, '20');
+      userEvent.selectOptions(currencyInput, 'EUR');
+      userEvent.selectOptions(methodInput, 'Cartão de débito');
+      userEvent.selectOptions(tagInput, 'Trabalho');
+      userEvent.type(descriptionInput, 'Vinte euros');
+      fireEvent.click(addButton);
+      expect(mockedExchange).toBeCalledTimes(3);
   
-  //     const expectedStateExpense2 = [
-  //       {
-  //         id: 0,
-  //         value: '10',
-  //         currency: 'USD',
-  //         method: 'Cartão de crédito',
-  //         tag: 'Lazer',
-  //         description: 'Dez dólares',
-  //         exchangeRates: mockData,
-  //       },
-  //       {
-  //         id: 1,
-  //         value: '20',
-  //         currency: 'EUR',
-  //         method: 'Cartão de débito',
-  //         tag: 'Trabalho',
-  //         description: 'Vinte euros',
-  //         exchangeRates: mockData,
-  //       },
-  //     ];
+      const expectedStateExpense2 = [
+        {
+          id: 0,
+          value: '10',
+          currency: 'USD',
+          method: 'Cartão de crédito',
+          tag: 'Lazer',
+          description: 'Dez dólares',
+          exchangeRates: mockData,
+        },
+        {
+          id: 1,
+          value: '20',
+          currency: 'EUR',
+          method: 'Cartão de débito',
+          tag: 'Trabalho',
+          description: 'Vinte euros',
+          exchangeRates: mockData,
+        },
+      ];
   
-  //     await waitFor(() => {
-  //       expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
-  //     });
-  //     expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense2);
+      await waitFor(() => {
+        expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
+      });
+      expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense2);
   
-  //     const totalField = screen.getByTestId('total-field');
-  //     expect(totalField).toContainHTML('187.12')
-  //   });
-  // });
+      const totalField = screen.getByTestId('total-field');
+      expect(totalField).toContainHTML('187.12')
+    });
+  });
   
   // describe('5 - Desenvolva uma tabela com os gastos contendo as seguintes características:', () => {
   //   const initial = initialStateWithExpenses;
