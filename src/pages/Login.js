@@ -1,6 +1,12 @@
 import React from 'react';
 
 class Login extends React.Component {
+  componentDidUpdate() {
+    if (true) {
+      document.getElementById('btn').disabled = false;
+    }
+  }
+
   render() {
     return (
       <form>
