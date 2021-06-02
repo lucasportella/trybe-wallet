@@ -8,11 +8,11 @@ class Login extends React.Component {
           Email
           <input data-testid="email-input" id="id-email" type="email" />
         </label>
-        <label data-testid="password-input" htmlFor="id-senha">
+        <label htmlFor="id-senha">
           Senha
-          <input />
+          <input data-testid="password-input" id="id-senha" type="password" />
         </label>
-        <button type="button">Entrar</button>
+        <button type="button" disabled id="btn">Entrar</button>
       </form>
     );
   }
