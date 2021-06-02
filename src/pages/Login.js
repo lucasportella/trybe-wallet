@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginSubmit } from '../actions/index';
 
@@ -16,9 +17,9 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidUpdate() {
-    const { isDisabled } = this.state;
-    if (isDisabled) {
+  componentDidUpdate(_, prevState) {
+    const { email, password } = this.state;
+    if (prevState.email !== email || prevState.password !== password) {
       this.handleSubmit();
     }
   }
@@ -26,12 +27,17 @@ class Login extends React.Component {
   handleSubmit() {
     const { email, password } = this.state;
     const minimalPasswordLength = 6;
-    if (password.length >= minimalPasswordLength && email.match(/^[^\s@]+@[^\s@]+$/)) {
+    const validator = /\S+@\S+\.\S+/gi;
+    if (password.length >= minimalPasswordLength && email.match(validator)) {
       this.setState({
         isDisabled: false,
       });
+    } else {
+      this.setState({
+        isDisabled: true,
+      });
     }
-    // regex veio daqui: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+    // regex baseado daqui: https://regexr.com/3e48o
   }
 
   handleChange({ target: { name, value } }) {
@@ -42,7 +48,10 @@ class Login extends React.Component {
 
   render() {
     const { email, password, isDisabled } = this.state;
-    const { loginSubmitAction } = this.props;
+    const { loginSubmitAction, emailNotEmpty } = this.props;
+    if (emailNotEmpty !== '') {
+      return <Redirect to="/carteira" />;
+    }
     return (
       <form>
         <label htmlFor="id-email">
@@ -84,8 +93,13 @@ const mapDispatchToProps = (dispatch) => ({
   loginSubmitAction: (email) => dispatch(loginSubmit(email)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapStateToProps = (state) => ({
+  emailNotEmpty: state.user.email,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 Login.propTypes = {
   loginSubmitAction: PropTypes.func.isRequired,
+  emailNotEmpty: PropTypes.string.isRequired,
 };
