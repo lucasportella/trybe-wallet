@@ -8,16 +8,27 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      isDisabled: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidUpdate() {
+    const { isDisabled } = this.state;
+    if (isDisabled) {
+      this.handleSubmit();
+    }
+  }
+
+  handleSubmit() {
     const { email, password } = this.state;
     const minimalPasswordLength = 6;
     if (password.length >= minimalPasswordLength && email.match(/^[^\s@]+@[^\s@]+$/)) {
-      document.getElementById('btn').disabled = false;
+      this.setState({
+        isDisabled: false,
+      });
     }
     // regex veio daqui: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
   }
@@ -29,7 +40,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, isDisabled } = this.state;
     const { loginSubmitAction } = this.props;
     return (
       <form>
@@ -57,7 +68,7 @@ class Login extends React.Component {
         </label>
         <button
           type="button"
-          disabled
+          disabled={ isDisabled }
           id="btn"
           onClick={ () => loginSubmitAction(email) }
         >
