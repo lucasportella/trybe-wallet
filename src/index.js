@@ -5,9 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import store from './reducers/index';
 
 ReactDOM.render(
-  <Provider>
+  <Provider store={ store }>
     <BrowserRouter>
       <App />
     </BrowserRouter>
