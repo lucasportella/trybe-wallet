@@ -12,9 +12,12 @@ class Login extends React.Component {
   }
 
   componentDidUpdate() {
-    if (true) {
+    const { email, password } = this.state;
+    const minimalPasswordLength = 6;
+    if (password.length >= minimalPasswordLength && email.match(/^[^\s@]+@[^\s@]+$/)) {
       document.getElementById('btn').disabled = false;
     }
+    // regex veio daqui: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
   }
 
   handleChange({ target: { name, value } }) {
