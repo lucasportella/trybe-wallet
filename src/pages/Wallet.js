@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import FormExpenses from './FormExpenses';
 
 class Wallet extends React.Component {
+
   render() {
-    const { email, totalExpenses, currentCurrency } = this.props;
+    const { email, total, currentCurrency } = this.props;
     return (
       <>
         <header>
@@ -26,7 +27,7 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
-  totalExpenses: state.wallet.totalExpenses,
+  total: state.wallet.total,
   currentCurrency: state.wallet.currentCurrency,
 });
 
@@ -34,6 +35,6 @@ export default connect(mapStateToProps)(Wallet);
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  totalExpenses: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   currentCurrency: PropTypes.string.isRequired,
 };

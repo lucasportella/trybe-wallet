@@ -3,7 +3,7 @@
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  totalExpenses: 0,
+  total: 0,
   currentCurrency: 'BRL',
 };
 
