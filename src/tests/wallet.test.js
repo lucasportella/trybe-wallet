@@ -112,35 +112,35 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
       expect(USDT).not.toBeInTheDocument();
     });
   
-    // test('Um campo para selecionar qual método de pagamento será utilizado', async () => {
-    //   renderWithRouterAndStore(<Wallet />, '/carteira');
-    //   const methodInput = await screen.findByTestId('method-input');
-    //   const moneyOption = screen.getByText(/Dinheiro/);
-    //   const creditOption = screen.getByText(/Cartão de crédito/);
-    //   const debitOption = screen.getByText(/Cartão de débito/);
+    test('Um campo para selecionar qual método de pagamento será utilizado', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const methodInput = await screen.findByTestId('method-input');
+      const moneyOption = screen.getByText(/Dinheiro/);
+      const creditOption = screen.getByText(/Cartão de crédito/);
+      const debitOption = screen.getByText(/Cartão de débito/);
   
-    //   expect(methodInput).toBeInTheDocument();
-    //   expect(moneyOption).toBeInTheDocument();
-    //   expect(creditOption).toBeInTheDocument();
-    //   expect(debitOption).toBeInTheDocument();
-    // });
+      expect(methodInput).toBeInTheDocument();
+      expect(moneyOption).toBeInTheDocument();
+      expect(creditOption).toBeInTheDocument();
+      expect(debitOption).toBeInTheDocument();
+    });
   
-    // test('Um campo para selecionar uma categoria (tag) para a despesa.', async () => {
-    //   renderWithRouterAndStore(<Wallet />, '/carteira');
-    //   const tagInput = await screen.findByTestId('tag-input');
-    //   const foodOption = screen.getByText(/Alimentação/);
-    //   const funOption = screen.getByText(/Lazer/);
-    //   const workOption = screen.getByText(/Trabalho/);
-    //   const transportOption = screen.getByText(/Transporte/);
-    //   const healthOption = screen.getByText(/Saúde/);
+    test('Um campo para selecionar uma categoria (tag) para a despesa.', async () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira');
+      const tagInput = await screen.findByTestId('tag-input');
+      const foodOption = screen.getByText(/Alimentação/);
+      const funOption = screen.getByText(/Lazer/);
+      const workOption = screen.getByText(/Trabalho/);
+      const transportOption = screen.getByText(/Transporte/);
+      const healthOption = screen.getByText(/Saúde/);
   
-    //   expect(tagInput).toBeInTheDocument();
-    //   expect(foodOption).toBeInTheDocument();
-    //   expect(funOption).toBeInTheDocument();
-    //   expect(workOption).toBeInTheDocument();
-    //   expect(transportOption).toBeInTheDocument();
-    //   expect(healthOption).toBeInTheDocument();
-    // });
+      expect(tagInput).toBeInTheDocument();
+      expect(foodOption).toBeInTheDocument();
+      expect(funOption).toBeInTheDocument();
+      expect(workOption).toBeInTheDocument();
+      expect(transportOption).toBeInTheDocument();
+      expect(healthOption).toBeInTheDocument();
+    });
   
     // test('Um botão com o texto \'Adicionar despesa\' que salva as informações da despesa no estado global e atualiza a soma de despesas no header', async () => {
     //   const { store } = renderWithRouterAndStore(<Wallet />, '/carteira');
