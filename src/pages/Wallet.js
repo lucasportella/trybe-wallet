@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import FormExpenses from './FormExpenses';
 
 class Wallet extends React.Component {
-
   render() {
-    const { email, total, currentCurrency } = this.props;
+    const { email, currentCurrency } = this.props;
     return (
       <>
         <header>
@@ -35,6 +34,6 @@ export default connect(mapStateToProps)(Wallet);
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  total: PropTypes.number.isRequired,
+  // total: PropTypes.number.isRequired,
   currentCurrency: PropTypes.string.isRequired,
 };

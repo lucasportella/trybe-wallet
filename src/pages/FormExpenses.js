@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import fetchAPI from '../services/fetchAPI';
 
 class FormExpenses extends React.Component {
@@ -20,8 +20,10 @@ class FormExpenses extends React.Component {
 
   async doFetch() {
     const result = await fetchAPI();
+    const arrayResult = Object.values(result);
+    const formattedResult = arrayResult.filter((coin) => coin.codein !== 'BRLT');
     this.setState({
-      coins: Object.values(result),
+      coins: formattedResult,
       isFetched: true,
     });
   }
@@ -42,14 +44,11 @@ class FormExpenses extends React.Component {
           <textarea data-testid="description-input" id="descricao-despesa" />
         </label>
         <select data-testid="currency-input" id="moeda">
-          {coins.map((coin, index) => {
-            if (coin.name !== 'Dólar Americano/Real Brasileiro Turismo') {
-              return (
-                <option data-testid={ coin.code } key={ index }>
-                  {coin.code}
-                </option>);
-            } return '';
-          })}
+          {coins.map((coin, index) => (
+            <option data-testid={ coin.code } key={ index }>
+              {coin.code}
+            </option>
+          ))}
         </select>
       </form>
     );
