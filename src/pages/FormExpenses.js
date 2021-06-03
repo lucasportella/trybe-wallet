@@ -1,7 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import fetchAPI from '../services/fetchAPI';
+import { expenseSubmit } from '../actions/index';
 
 class FormExpenses extends React.Component {
   constructor() {
@@ -15,12 +16,14 @@ class FormExpenses extends React.Component {
         currency: 'USD',
         method: 'dinheiro',
         tag: 'alimentacao',
+        exchangeRates: {},
       },
     };
 
     this.doFetch = this.doFetch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.inputDespesaDescricao = this.inputDespesaDescricao.bind(this);
   }
 
   componentDidMount() {
@@ -47,16 +50,15 @@ class FormExpenses extends React.Component {
   }
 
   handleSubmit() {
-    
+    const { expense } = this.state;
+    const { expenseSubmitAction } = this.props;
+    expenseSubmitAction(expense);
   }
 
-  render() {
-    const { coins, isFetched, expense } = this.state;
-    if (!isFetched) {
-      return <div>Carregando...</div>;
-    }
+  inputDespesaDescricao(state) {
+    const { expense } = state;
     return (
-      <form>
+      <>
         <label htmlFor="input-despesa">
           Adicionar valor da despesa:
           <input
@@ -78,7 +80,24 @@ class FormExpenses extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-        <select data-testid="currency-input" id="moeda" name="currency" onChange={ this.handleChange }>
+      </>
+    );
+  }
+
+  render() {
+    const { coins, isFetched } = this.state;
+    if (!isFetched) {
+      return <div>Carregando...</div>;
+    }
+    return (
+      <form>
+        { this.inputDespesaDescricao(this.state) }
+        <select
+          data-testid="currency-input"
+          id="moeda"
+          name="currency"
+          onChange={ this.handleChange }
+        >
           {coins.map((coin, index) => (
             <option value={ coin.code } data-testid={ coin.code } key={ index }>
               {coin.code}
@@ -97,10 +116,14 @@ class FormExpenses extends React.Component {
           <option value="transporte">Transporte</option>
           <option value="saude">Saúde</option>
         </select>
-        <button type="button">Adicionar despesa</button>
+        <button onClick={ this.handleSubmit } type="button">Adicionar despesa</button>
       </form>
     );
   }
 }
 
-export default FormExpenses;
+const mapDispatchToProps = (dispatch) => ({
+  expenseSubmitAction: (state) => dispatch(expenseSubmit(state)),
+});
+
+export default connect(null, mapDispatchToProps)(FormExpenses);
