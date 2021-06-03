@@ -54,12 +54,10 @@ class FormExpenses extends React.Component {
   handleSubmit() {
     const { expenseSubmitAction } = this.props;
     const { expense } = this.state;
-    // const nextId = expensesList.length;
     expenseSubmitAction(expense);
     this.setState((oldState) => ({
-      ...oldState, expense: { ...oldState.expense, id: oldState.expense.id + 1 },
+      ...oldState, expense: { ...oldState.expense, id: expense.id + 1 },
     }));
-    console.log(expense.id)
   }
 
   inputDespesaDescricao(state) {
