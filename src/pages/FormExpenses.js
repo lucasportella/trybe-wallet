@@ -20,6 +20,7 @@ class FormExpenses extends React.Component {
 
     this.doFetch = this.doFetch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,10 @@ class FormExpenses extends React.Component {
     }));
   }
 
+  handleSubmit() {
+    
+  }
+
   render() {
     const { coins, isFetched, expense } = this.state;
     if (!isFetched) {
@@ -68,23 +73,24 @@ class FormExpenses extends React.Component {
           <textarea
             data-testid="description-input"
             id="descricao-despesa"
-            name="textarea-description"
+            name="description"
             value={ expense.description }
+            onChange={ this.handleChange }
           />
         </label>
-        <select data-testid="currency-input" id="moeda" name="select-coins">
+        <select data-testid="currency-input" id="moeda" name="currency" onChange={ this.handleChange }>
           {coins.map((coin, index) => (
             <option value={ coin.code } data-testid={ coin.code } key={ index }>
               {coin.code}
             </option>
           ))}
         </select>
-        <select name="select-method" data-testid="method-input">
+        <select name="method" data-testid="method-input" onChange={ this.handleChange }>
           <option value="dinheiro">Dinheiro</option>
           <option value="cartao-de-credito">Cartão de crédito</option>
           <option value="cartao-de-debito">Cartão de débito</option>
         </select>
-        <select name="select-tag" data-testid="tag-input">
+        <select name="tag" data-testid="tag-input" onChange={ this.handleChange }>
           <option value="alimentacao">Alimentação</option>
           <option value="lazer">Lazer</option>
           <option value="trabalho">Trabalho</option>
