@@ -25,6 +25,13 @@ class FormExpenses extends React.Component {
     this.setState({
       coins: formattedResult,
       isFetched: true,
+      expense: {
+        value: 0,
+        description: '',
+        currency: 'USD',
+        method: 'dinheiro',
+        tag: 'alimentacao',
+      },
     });
   }
 
@@ -37,30 +44,39 @@ class FormExpenses extends React.Component {
       <form>
         <label htmlFor="input-despesa">
           Adicionar valor da despesa:
-          <input data-testid="value-input" id="input-despesa" />
+          <input
+            data-testid="value-input"
+            id="input-despesa"
+            type="number"
+            name="input-value"
+          />
         </label>
         <label htmlFor="descricao-despesa">
           Descrição da despesa:
-          <textarea data-testid="description-input" id="descricao-despesa" />
+          <textarea
+            data-testid="description-input"
+            id="descricao-despesa"
+            name="textarea-description"
+          />
         </label>
         <select data-testid="currency-input" id="moeda">
           {coins.map((coin, index) => (
-            <option data-testid={ coin.code } key={ index }>
+            <option value={ coin.code } data-testid={ coin.code } key={ index }>
               {coin.code}
             </option>
           ))}
         </select>
-        <select data-testid="method-input">
-          <option>Dinheiro</option>
-          <option>Cartão de crédito</option>
-          <option>Cartão de débito</option>
+        <select name="select-method" data-testid="method-input">
+          <option value="dinheiro">Dinheiro</option>
+          <option value="cartao-de-credito">Cartão de crédito</option>
+          <option value="cartao-de-debito">Cartão de débito</option>
         </select>
-        <select data-testid="tag-input">
-          <option>Alimentação</option>
-          <option>Lazer</option>
-          <option>Trabalho</option>
-          <option>Transporte</option>
-          <option>Saúde</option>
+        <select name="select-tag" data-testid="tag-input">
+          <option value="alimentacao">Alimentação</option>
+          <option value="lazer">Lazer</option>
+          <option value="trabalho">Trabalho</option>
+          <option value="transporte">Transporte</option>
+          <option value="saude">Saúde</option>
         </select>
         <button type="button">Adicionar despesa</button>
       </form>
