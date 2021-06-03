@@ -9,9 +9,17 @@ class FormExpenses extends React.Component {
     this.state = {
       isFetched: false,
       coins: [],
+      expense: {
+        inputValue: 0,
+        description: '',
+        currency: 'USD',
+        method: 'dinheiro',
+        tag: 'alimentacao',
+      },
     };
 
     this.doFetch = this.doFetch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -25,18 +33,20 @@ class FormExpenses extends React.Component {
     this.setState({
       coins: formattedResult,
       isFetched: true,
-      expense: {
-        value: 0,
-        description: '',
-        currency: 'USD',
-        method: 'dinheiro',
-        tag: 'alimentacao',
-      },
     });
   }
 
+  handleChange({ target: { name, value } }) {
+    this.setState((oldState) => ({
+      ...oldState,
+      expense: { ...oldState.expense,
+        [name]: value,
+      },
+    }));
+  }
+
   render() {
-    const { coins, isFetched } = this.state;
+    const { coins, isFetched, expense } = this.state;
     if (!isFetched) {
       return <div>Carregando...</div>;
     }
@@ -49,6 +59,8 @@ class FormExpenses extends React.Component {
             id="input-despesa"
             type="number"
             name="input-value"
+            value={ expense.value }
+            onChange={ this.handleChange }
           />
         </label>
         <label htmlFor="descricao-despesa">
@@ -57,9 +69,10 @@ class FormExpenses extends React.Component {
             data-testid="description-input"
             id="descricao-despesa"
             name="textarea-description"
+            value={ expense.description }
           />
         </label>
-        <select data-testid="currency-input" id="moeda">
+        <select data-testid="currency-input" id="moeda" name="select-coins">
           {coins.map((coin, index) => (
             <option value={ coin.code } data-testid={ coin.code } key={ index }>
               {coin.code}
