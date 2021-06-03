@@ -1,3 +1,5 @@
+import fetchAPI from '../services/fetchAPI';
+
 export const LOGIN_SUBMIT = 'LOGIN_SUBMIT';
 export const loginSubmit = (email) => ({ type: LOGIN_SUBMIT, email });
 
@@ -9,3 +11,10 @@ export const expenseSubmit = (expense) => ({
   type: EXPENSE_SUBMIT,
   expense,
 });
+
+export const thunker = () => {
+  return async (dispatch) => {
+    dispatch(expenseSubmit())
+    const coins = await fetchAPI();
+  }
+}

@@ -11,6 +11,7 @@ class FormExpenses extends React.Component {
       isFetched: false,
       coins: [],
       expense: {
+        id: 0,
         inputValue: 0,
         description: '',
         currency: 'USD',
@@ -27,17 +28,18 @@ class FormExpenses extends React.Component {
   }
 
   componentDidMount() {
-    this.doFetch();
+    this.doFetch().then(() => console.log(this.state));
   }
 
   async doFetch() {
     const result = await fetchAPI();
     const arrayResult = Object.values(result);
     const formattedResult = arrayResult.filter((coin) => coin.codein !== 'BRLT');
-    this.setState({
+    this.setState((oldState) => ({
+      ...oldState,
       coins: formattedResult,
       isFetched: true,
-    });
+    }));
   }
 
   handleChange({ target: { name, value } }) {
@@ -50,9 +52,14 @@ class FormExpenses extends React.Component {
   }
 
   handleSubmit() {
-    const { expense } = this.state;
     const { expenseSubmitAction } = this.props;
+    const { expense } = this.state;
+    // const nextId = expensesList.length;
     expenseSubmitAction(expense);
+    this.setState((oldState) => ({
+      ...oldState, expense: { ...oldState.expense, id: oldState.expense.id + 1 },
+    }));
+    console.log(expense.id)
   }
 
   inputDespesaDescricao(state) {
@@ -126,4 +133,8 @@ const mapDispatchToProps = (dispatch) => ({
   expenseSubmitAction: (state) => dispatch(expenseSubmit(state)),
 });
 
-export default connect(null, mapDispatchToProps)(FormExpenses);
+const mapStateToProps = (state) => ({
+  expensesList: state.wallet.expenses,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormExpenses);
