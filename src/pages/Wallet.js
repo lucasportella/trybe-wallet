@@ -6,9 +6,6 @@ import FormExpenses from './FormExpenses';
 class Wallet extends React.Component {
   constructor() {
     super();
-    this.state = {
-      total: 0,
-    };
     this.calculateTotal = this.calculateTotal.bind(this);
   }
 
@@ -22,7 +19,6 @@ class Wallet extends React.Component {
         let ask = selectedCurrency;
         if (ask) {
           ask = ask.ask;
-          console.log(ask)
           total += (expenseNumber * ask) * 100;
           total = Math.round(total);
           return (total / 100);
@@ -66,6 +62,5 @@ export default connect(mapStateToProps)(Wallet);
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  // total: PropTypes.number.isRequired,
   currentCurrency: PropTypes.string.isRequired,
 };
