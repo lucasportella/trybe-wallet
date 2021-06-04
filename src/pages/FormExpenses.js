@@ -10,21 +10,13 @@ class FormExpenses extends React.Component {
     this.state = {
       isFetched: false,
       coins: [],
-      expense: {
-        id: 0,
-        value: 0,
-        currency: 'USD',
-        description: '',
-        method: 'dinheiro',
-        tag: 'alimentacao',
-        exchangeRates: '',
-      },
     };
 
     this.doFetch = this.doFetch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inputDespesaDescricao = this.inputDespesaDescricao.bind(this);
+    this.renderCurrencyAndMethod = this.renderCurrencyAndMethod.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +31,15 @@ class FormExpenses extends React.Component {
       ...oldState,
       coins: formattedResult,
       isFetched: true,
+      expense: {
+        id: 0,
+        value: 0,
+        currency: 'USD',
+        method: 'dinheiro',
+        tag: 'alimentacao',
+        description: '',
+        exchangeRates: '',
+      },
     }));
   }
 
@@ -57,7 +58,16 @@ class FormExpenses extends React.Component {
     expenseSubmitAction(expense);
     thunkerAction();
     this.setState((oldState) => ({
-      ...oldState, expense: { ...oldState.expense, id: expense.id + 1 },
+      ...oldState,
+      expense: {
+        id: expense.id + 1,
+        value: 0,
+        currency: 'USD',
+        method: 'dinheiro',
+        tag: 'alimentacao',
+        description: '',
+        exchangeRates: '',
+      },
     }));
   }
 
@@ -90,19 +100,16 @@ class FormExpenses extends React.Component {
     );
   }
 
-  render() {
-    const { coins, isFetched } = this.state;
-    if (!isFetched) {
-      return <div>Carregando...</div>;
-    }
+  renderCurrencyAndMethod() {
+    const { coins, expense: { currency, method } } = this.state;
     return (
-      <form>
-        { this.inputDespesaDescricao(this.state) }
+      <>
         <select
           data-testid="currency-input"
           id="moeda"
           name="currency"
           onChange={ this.handleChange }
+          value={ currency }
         >
           {coins.map((coin, index) => (
             <option value={ coin.code } data-testid={ coin.code } key={ index }>
@@ -110,17 +117,41 @@ class FormExpenses extends React.Component {
             </option>
           ))}
         </select>
-        <select name="method" data-testid="method-input" onChange={ this.handleChange }>
-          <option value="dinheiro">Dinheiro</option>
-          <option value="cartao-de-credito">Cartão de crédito</option>
-          <option value="cartao-de-debito">Cartão de débito</option>
+        <select
+          name="method"
+          value={ method }
+          data-testid="method-input"
+          onChange={ this.handleChange }
+        >
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão de crédito">Cartão de crédito</option>
+          <option value="Cartão de débito">Cartão de débito</option>
         </select>
-        <select name="tag" data-testid="tag-input" onChange={ this.handleChange }>
-          <option value="alimentacao">Alimentação</option>
-          <option value="lazer">Lazer</option>
-          <option value="trabalho">Trabalho</option>
-          <option value="transporte">Transporte</option>
-          <option value="saude">Saúde</option>
+      </>
+    );
+  }
+
+  render() {
+    const { isFetched } = this.state;
+    if (!isFetched) {
+      return <div>Carregando...</div>;
+    }
+    const { expense: { tag } } = this.state;
+    return (
+      <form>
+        { this.inputDespesaDescricao(this.state) }
+        { this.renderCurrencyAndMethod(this.state) }
+        <select
+          value={ tag }
+          name="tag"
+          data-testid="tag-input"
+          onChange={ this.handleChange }
+        >
+          <option value="Alimentação">Alimentação</option>
+          <option value="Lazer">Lazer</option>
+          <option value="Trabalho">Trabalho</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Saúde">Saúde</option>
         </select>
         <button onClick={ this.handleSubmit } type="button">Adicionar despesa</button>
       </form>
