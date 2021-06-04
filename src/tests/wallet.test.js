@@ -217,31 +217,31 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
     });
   });
   
-  // describe('5 - Desenvolva uma tabela com os gastos contendo as seguintes características:', () => {
-  //   const initial = initialStateWithExpenses;
+  describe('5 - Desenvolva uma tabela com os gastos contendo as seguintes características:', () => {
+    const initial = initialStateWithExpenses;
   
-  //   test('A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão', () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira', initial);
-  //     const thDescricao = screen.getByText('Descrição');
-  //     const thTag = screen.getByText('Tag');
-  //     const thMetodo = screen.getByText('Método de pagamento');
-  //     const thValor = screen.getByText('Valor');
-  //     const thMoeda = screen.getByText('Moeda');
-  //     const thCambio = screen.getByText('Câmbio utilizado');
-  //     const thValorConvertido = screen.getByText('Valor convertido');
-  //     const thMoedaConversao = screen.getByText('Moeda de conversão');
-  //     const thEditarExcluir = screen.getByText('Editar/Excluir');
+    test('A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão', () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira', initial);
+      const thDescricao = screen.getByText('Descrição');
+      const thTag = screen.getByText('Tag');
+      const thMetodo = screen.getByText('Método de pagamento');
+      const thValor = screen.getByText('Valor');
+      const thMoeda = screen.getByText('Moeda');
+      const thCambio = screen.getByText('Câmbio utilizado');
+      const thValorConvertido = screen.getByText('Valor convertido');
+      const thMoedaConversao = screen.getByText('Moeda de conversão');
+      const thEditarExcluir = screen.getByText('Editar/Excluir');
   
-  //     expect(thDescricao).toBeInTheDocument();
-  //     expect(thTag).toBeInTheDocument();
-  //     expect(thMetodo).toBeInTheDocument();
-  //     expect(thValor).toBeInTheDocument();
-  //     expect(thMoeda).toBeInTheDocument();
-  //     expect(thCambio).toBeInTheDocument();
-  //     expect(thValorConvertido).toBeInTheDocument();
-  //     expect(thMoedaConversao).toBeInTheDocument();
-  //     expect(thEditarExcluir).toBeInTheDocument();
-  //   });
+      expect(thDescricao).toBeInTheDocument();
+      expect(thTag).toBeInTheDocument();
+      expect(thMetodo).toBeInTheDocument();
+      expect(thValor).toBeInTheDocument();
+      expect(thMoeda).toBeInTheDocument();
+      expect(thCambio).toBeInTheDocument();
+      expect(thValorConvertido).toBeInTheDocument();
+      expect(thMoedaConversao).toBeInTheDocument();
+      expect(thEditarExcluir).toBeInTheDocument();
+    });
   
   //   test('A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.', () => {
   //     renderWithRouterAndStore(<Wallet />, '/carteira', initial);
@@ -324,5 +324,5 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
   //     const totalField = screen.getByTestId('total-field');
   //     expect(totalField).toContainHTML('131.37');
   // });
-  // });
+  });
   
