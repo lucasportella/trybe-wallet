@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteExpense } from '../actions/index';
 
 class Table extends React.Component {
   constructor() {
     super();
     this.renderExpensesTable = this.renderExpensesTable.bind(this);
+    this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
+  }
+
+  handleDeleteExpense(id) {
+    const { deleteExpenseAction } = this.props;
+    deleteExpenseAction(id);
   }
 
   renderExpensesTable() {
@@ -20,9 +27,9 @@ class Table extends React.Component {
         if (getAsk) {
           ask = getAsk.ask * 100;
           rawAsk = getAsk.ask;
-          ask = (Math.round(ask)) / 100;
+          ask = Math.round(ask) / 100;
           value *= Number.parseFloat(rawAsk);
-          value = (Math.round(value * 100)) / 100;
+          value = Math.round(value * 100) / 100;
         }
         if (getCurrency) {
           getCurrency = getCurrency.name.split('/');
@@ -38,6 +45,15 @@ class Table extends React.Component {
             <td>{ask}</td>
             <td>{value}</td>
             <td>Real</td>
+            <td>
+              <button
+                type="button"
+                onClick={ () => this.handleDeleteExpense(expense.id) }
+                data-testid="delete-btn"
+              >
+                Deletar
+              </button>
+            </td>
           </tr>
         );
       });
@@ -70,8 +86,13 @@ const mapStateToProps = (state) => ({
   getWalletState: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps)(Table);
+const mapDispatchToProps = (dispatch) => ({
+  deleteExpenseAction: (id) => dispatch(deleteExpense(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
 Table.propTypes = {
+  deleteExpenseAction: PropTypes.func.isRequired,
   getWalletState: PropTypes.arrayOf.isRequired,
 };

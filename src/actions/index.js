@@ -18,6 +18,12 @@ export const getCurrentExchange = (exchange) => ({
   exchange,
 });
 
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const deleteExpense = (id) => ({
+  type: DELETE_EXPENSE,
+  id,
+});
+
 export const thunker = () => async (dispatch) => {
   try {
     const coins = await fetchAPI();
