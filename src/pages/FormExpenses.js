@@ -12,9 +12,9 @@ class FormExpenses extends React.Component {
       coins: [],
       expense: {
         id: 0,
-        inputValue: 0,
-        description: '',
+        value: 0,
         currency: 'USD',
+        description: '',
         method: 'dinheiro',
         tag: 'alimentacao',
         exchangeRates: '',
@@ -71,7 +71,7 @@ class FormExpenses extends React.Component {
             data-testid="value-input"
             id="input-despesa"
             type="number"
-            name="inputValue"
+            name="value"
             value={ expense.value }
             onChange={ this.handleChange }
           />

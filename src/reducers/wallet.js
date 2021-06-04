@@ -4,7 +4,6 @@ import { EXPENSE_SUBMIT, CURRENT_EXCHANGE } from '../actions/index';
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  total: 0,
   currentCurrency: 'BRL',
 };
 

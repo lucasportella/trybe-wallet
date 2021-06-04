@@ -142,79 +142,79 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
       expect(healthOption).toBeInTheDocument();
     });
   
-    // test('Um botão com o texto \'Adicionar despesa\' que salva as informações da despesa no estado global e atualiza a soma de despesas no header', async () => {
-    //   const { store } = renderWithRouterAndStore(<Wallet />, '/carteira');
-    //   const addButton = await screen.findByText(/Adicionar despesa/i);
-    //   const valueInput = await screen.findByTestId('value-input');
-    //   const currencyInput = await screen.findByTestId('currency-input');
-    //   const methodInput = await screen.findByTestId('method-input');
-    //   const tagInput = await screen.findByTestId('tag-input');
-    //   const descriptionInput = await screen.findByTestId('description-input');
+    test('Um botão com o texto \'Adicionar despesa\' que salva as informações da despesa no estado global e atualiza a soma de despesas no header', async () => {
+      const { store } = renderWithRouterAndStore(<Wallet />, '/carteira');
+      const addButton = await screen.findByText(/Adicionar despesa/i);
+      const valueInput = await screen.findByTestId('value-input');
+      const currencyInput = await screen.findByTestId('currency-input');
+      const methodInput = await screen.findByTestId('method-input');
+      const tagInput = await screen.findByTestId('tag-input');
+      const descriptionInput = await screen.findByTestId('description-input');
   
-    //   expect(addButton).toBeInTheDocument();
+      expect(addButton).toBeInTheDocument();
   
-    //   userEvent.type(valueInput, '10');
-    //   userEvent.selectOptions(currencyInput, 'USD');
-    //   userEvent.selectOptions(methodInput, 'Cartão de crédito');
-    //   userEvent.selectOptions(tagInput, 'Lazer');
-    //   userEvent.type(descriptionInput, 'Dez dólares');
-    //   fireEvent.click(addButton);
-    //   expect(mockedExchange).toBeCalledTimes(2);
+      userEvent.type(valueInput, '10');
+      userEvent.selectOptions(currencyInput, 'USD');
+      userEvent.selectOptions(methodInput, 'Cartão de crédito');
+      userEvent.selectOptions(tagInput, 'Lazer');
+      userEvent.type(descriptionInput, 'Dez dólares');
+      fireEvent.click(addButton);
+      expect(mockedExchange).toBeCalledTimes(2);
   
-    //   const expectedStateExpense = [
-    //     {
-    //       id: 0,
-    //       value: '10',
-    //       currency: 'USD',
-    //       method: 'Cartão de crédito',
-    //       tag: 'Lazer',
-    //       description: 'Dez dólares',
-    //       exchangeRates: mockData,
-    //     },
-    //   ];
+      const expectedStateExpense = [
+        {
+          id: 0,
+          value: '10',
+          currency: 'USD',
+          method: 'Cartão de crédito',
+          tag: 'Lazer',
+          description: 'Dez dólares',
+          exchangeRates: mockData,
+        },
+      ];
   
-    //   await waitFor(() => {
-    //     expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
-    //   });
-    //   expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense);
+      await waitFor(() => {
+        expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
+      });
+      expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense);
   
-    //   userEvent.type(valueInput, '20');
-    //   userEvent.selectOptions(currencyInput, 'EUR');
-    //   userEvent.selectOptions(methodInput, 'Cartão de débito');
-    //   userEvent.selectOptions(tagInput, 'Trabalho');
-    //   userEvent.type(descriptionInput, 'Vinte euros');
-    //   fireEvent.click(addButton);
-    //   expect(mockedExchange).toBeCalledTimes(3);
+      userEvent.type(valueInput, '20');
+      userEvent.selectOptions(currencyInput, 'EUR');
+      userEvent.selectOptions(methodInput, 'Cartão de débito');
+      userEvent.selectOptions(tagInput, 'Trabalho');
+      userEvent.type(descriptionInput, 'Vinte euros');
+      fireEvent.click(addButton);
+      expect(mockedExchange).toBeCalledTimes(3);
   
-    //   const expectedStateExpense2 = [
-    //     {
-    //       id: 0,
-    //       value: '10',
-    //       currency: 'USD',
-    //       method: 'Cartão de crédito',
-    //       tag: 'Lazer',
-    //       description: 'Dez dólares',
-    //       exchangeRates: mockData,
-    //     },
-    //     {
-    //       id: 1,
-    //       value: '20',
-    //       currency: 'EUR',
-    //       method: 'Cartão de débito',
-    //       tag: 'Trabalho',
-    //       description: 'Vinte euros',
-    //       exchangeRates: mockData,
-    //     },
-    //   ];
+      const expectedStateExpense2 = [
+        {
+          id: 0,
+          value: '10',
+          currency: 'USD',
+          method: 'Cartão de crédito',
+          tag: 'Lazer',
+          description: 'Dez dólares',
+          exchangeRates: mockData,
+        },
+        {
+          id: 1,
+          value: '20',
+          currency: 'EUR',
+          method: 'Cartão de débito',
+          tag: 'Trabalho',
+          description: 'Vinte euros',
+          exchangeRates: mockData,
+        },
+      ];
   
-    //   await waitFor(() => {
-    //     expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
-    //   });
-    //   expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense2);
+      await waitFor(() => {
+        expect(valueInput.value === 0 || valueInput.value === '0' || valueInput.value === '').toBe(true);
+      });
+      expect(store.getState().wallet.expenses).toStrictEqual(expectedStateExpense2);
   
-    //   const totalField = screen.getByTestId('total-field');
-    //   expect(totalField).toContainHTML('187.12')
-    // });
+      const totalField = screen.getByTestId('total-field');
+      expect(totalField).toContainHTML('187.12')
+    });
   });
   
   // describe('5 - Desenvolva uma tabela com os gastos contendo as seguintes características:', () => {

@@ -4,14 +4,37 @@ import { connect } from 'react-redux';
 import FormExpenses from './FormExpenses';
 
 class Wallet extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      total: 0,
+    };
+    this.calculateTotal = this.calculateTotal.bind(this);
+  }
+
+  calculateTotal() {
+    const { expensesList } = this.props;
+    let total = 0;
+    if (expensesList.length > 0) {
+      total = expensesList.map((expense) => {
+        const expenseNumber = Number(expense.value);
+        total += expenseNumber;
+        return total;
+      });
+      total = total[total.length - 1];
+    }
+    return total;
+  }
+
   render() {
     const { email, currentCurrency } = this.props;
+
     return (
       <>
         <header>
           <span data-testid="email-field">{email}</span>
           <span data-testid="total-field">
-            0
+            { this.calculateTotal() }
           </span>
           <span data-testid="header-currency-field">
             Câmbio atual:
@@ -28,6 +51,7 @@ const mapStateToProps = (state) => ({
   email: state.user.email,
   total: state.wallet.total,
   currentCurrency: state.wallet.currentCurrency,
+  expensesList: state.wallet.expenses,
 });
 
 export default connect(mapStateToProps)(Wallet);
