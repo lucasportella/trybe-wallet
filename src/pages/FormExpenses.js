@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchAPI from '../services/fetchAPI';
 import { expenseSubmit, thunker } from '../actions/index';
@@ -169,3 +169,8 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormExpenses);
+
+FormExpenses.propTypes = {
+  expenseSubmitAction: PropTypes.func.isRequired,
+  thunkerAction: PropTypes.func.isRequired,
+};
