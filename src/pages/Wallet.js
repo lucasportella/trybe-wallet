@@ -17,7 +17,7 @@ class Wallet extends React.Component {
     let total = 0;
     if (expensesList.length > 0) {
       total = expensesList.map((expense) => {
-        const expenseNumber = Number(expense.value);
+        const expenseNumber = Number.parseFloat(expense.value);
         total += expenseNumber;
         return total;
       });
