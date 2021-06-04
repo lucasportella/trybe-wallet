@@ -16,9 +16,14 @@ class Table extends React.Component {
         let getCurrency = expense.exchangeRates[expense.currency];
         const getAsk = expense.exchangeRates[expense.currency];
         let ask = 'Loading...';
+        let value = Number.parseFloat(expense.value);
+        let rawAsk = '';
         if (getAsk) {
           ask = getAsk.ask * 100;
+          rawAsk = getAsk.ask;
           ask = (Math.round(ask)) / 100;
+          value *= Number.parseFloat(rawAsk);
+          value = (Math.round(value * 100))/100;
         }
         if (getCurrency) {
           getCurrency = getCurrency.name;
@@ -33,6 +38,7 @@ class Table extends React.Component {
             <td>{expense.value}</td>
             <td>{getCurrency}</td>
             <td>{ask}</td>
+            <td>{value}</td>
             <td>Real</td>
           </tr>
         );
