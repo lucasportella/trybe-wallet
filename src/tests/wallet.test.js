@@ -243,27 +243,27 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
       expect(thEditarExcluir).toBeInTheDocument();
     });
   
-  //   test('A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.', () => {
-  //     renderWithRouterAndStore(<Wallet />, '/carteira', initial);
-  //     expect(screen.getAllByRole('cell', { name: 'Dez dólares' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Lazer' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Cartão de crédito' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: '10' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Dólar Comercial' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: '5.58' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: '55.75' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Real' })[0]).toBeInTheDocument();
+    test('A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.', () => {
+      renderWithRouterAndStore(<Wallet />, '/carteira', initial);
+      expect(screen.getAllByRole('cell', { name: 'Dez dólares' })[0]).toBeInTheDocument();
+      expect(screen.getAllByRole('cell', { name: 'Lazer' })[0]).toBeInTheDocument();
+      expect(screen.getAllByRole('cell', { name: 'Cartão de crédito' })[0]).toBeInTheDocument();
+      expect(screen.getAllByRole('cell', { name: '10' })[0]).toBeInTheDocument();
+      expect(screen.getAllByRole('cell', { name: 'Dólar Comercial' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: '5.58' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: '55.75' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: 'Real' })[0]).toBeInTheDocument();
   
-  //     expect(screen.getAllByRole('cell', { name: 'Vinte euros' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Trabalho' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Dinheiro' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: '20' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Euro' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: '6.57' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: '131.37' })[0]).toBeInTheDocument();
-  //     expect(screen.getAllByRole('cell', { name: 'Real' })[1]).toBeInTheDocument();
-  //   });
-  // });
+      // expect(screen.getAllByRole('cell', { name: 'Vinte euros' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: 'Trabalho' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: 'Dinheiro' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: '20' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: 'Euro' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: '6.57' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: '131.37' })[0]).toBeInTheDocument();
+      // expect(screen.getAllByRole('cell', { name: 'Real' })[1]).toBeInTheDocument();
+    });
+  });
   
   // describe('6 - Crie um botão para deletar uma despesa da tabela contendo as seguintes características:', () => {
   //   const initial = initialStateWithExpenses;
@@ -324,5 +324,5 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
   //     const totalField = screen.getByTestId('total-field');
   //     expect(totalField).toContainHTML('131.37');
   // });
-  });
+  // });
   

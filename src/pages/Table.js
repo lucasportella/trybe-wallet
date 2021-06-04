@@ -7,20 +7,39 @@ class Table extends React.Component {
     this.renderExpensesTable = this.renderExpensesTable.bind(this);
   }
 
+  renderFullTable() {}
+
   renderExpensesTable() {
     const { getWalletState } = this.props;
-    console.log(getWalletState);
     if (getWalletState) {
-      return getWalletState.map((expense) =>(
-        <tr key={ expense.id }>
-          {expense.currency}
-        </tr>));
+      return getWalletState.map((expense) => {
+        let getCurrency = expense.exchangeRates[expense.currency];
+        const getAsk = expense.exchangeRates[expense.currency];
+        let ask = 'Loading...';
+        if (getAsk) {
+          ask = getAsk.ask;
+        }
+        if (getCurrency) {
+          getCurrency = getCurrency.name;
+          getCurrency = getCurrency.split('/');
+          getCurrency = [getCurrency[0]]; // array destructuring
+        }
+        return (
+          <tr key={ expense.id }>
+            <td>{expense.description}</td>
+            <td>{expense.tag}</td>
+            <td>{expense.method}</td>
+            <td>{expense.value}</td>
+            <td>{getCurrency}</td>
+            <td>{ask}</td>
+            <td>Real</td>
+          </tr>
+        );
+      });
     }
   }
 
   render() {
-    const { getWalletState } = this.props;
-    console.log(getWalletState);
     return (
       <table>
         <thead>
