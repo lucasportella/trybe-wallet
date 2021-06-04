@@ -53,6 +53,12 @@ class Table extends React.Component {
               >
                 Deletar
               </button>
+              <button
+                type="button"
+                data-testid="edit-btn"
+              >
+                Editar despesa
+              </button>
             </td>
           </tr>
         );

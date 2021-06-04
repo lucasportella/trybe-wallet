@@ -63,6 +63,11 @@ export default connect(mapStateToProps)(Wallet);
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.string.isRequired,
-  expensesList: PropTypes.arrayOf.isRequired,
+  currentCurrency: PropTypes.func,
+  expensesList: PropTypes.oneOf([PropTypes.arrayOf, PropTypes.func]),
+};
+
+Wallet.defaultProps = {
+  currentCurrency: null,
+  expensesList: [null, null],
 };
