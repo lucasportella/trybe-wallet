@@ -18,6 +18,7 @@ class Login extends React.Component {
   }
 
   componentDidUpdate(_, prevState) {
+    // pelo onChange seria mais fácil, mas fiz só pra provar que dá pra contornar o loop infinito nesse caso =P
     const { email, password } = this.state;
     if (prevState.email !== email || prevState.password !== password) {
       this.handleSubmit();

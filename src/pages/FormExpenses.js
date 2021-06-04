@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchAPI from '../services/fetchAPI';
-import { expenseSubmit } from '../actions/index';
+import { expenseSubmit, thunker } from '../actions/index';
 
 class FormExpenses extends React.Component {
   constructor() {
@@ -17,7 +17,7 @@ class FormExpenses extends React.Component {
         currency: 'USD',
         method: 'dinheiro',
         tag: 'alimentacao',
-        exchangeRates: {},
+        exchangeRates: '',
       },
     };
 
@@ -28,7 +28,7 @@ class FormExpenses extends React.Component {
   }
 
   componentDidMount() {
-    this.doFetch().then(() => console.log(this.state));
+    this.doFetch();
   }
 
   async doFetch() {
@@ -52,9 +52,10 @@ class FormExpenses extends React.Component {
   }
 
   handleSubmit() {
-    const { expenseSubmitAction } = this.props;
+    const { expenseSubmitAction, thunkerAction } = this.props;
     const { expense } = this.state;
     expenseSubmitAction(expense);
+    thunkerAction();
     this.setState((oldState) => ({
       ...oldState, expense: { ...oldState.expense, id: expense.id + 1 },
     }));
@@ -129,6 +130,7 @@ class FormExpenses extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   expenseSubmitAction: (state) => dispatch(expenseSubmit(state)),
+  thunkerAction: () => dispatch(thunker()),
 });
 
 const mapStateToProps = (state) => ({

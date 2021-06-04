@@ -12,9 +12,17 @@ export const expenseSubmit = (expense) => ({
   expense,
 });
 
-export const thunker = () => {
-  return async (dispatch) => {
-    dispatch(expenseSubmit())
+export const CURRENT_EXCHANGE = 'CURRENT_EXCHANGE';
+export const getCurrentExchange = (exchange) => ({
+  type: CURRENT_EXCHANGE,
+  exchange,
+});
+
+export const thunker = () => async (dispatch) => {
+  try {
     const coins = await fetchAPI();
+    return dispatch(getCurrentExchange(coins));
+  } catch (error) {
+    console.log(error);
   }
-}
+};
