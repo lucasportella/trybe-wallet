@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Table extends React.Component {
   constructor() {
     super();
     this.renderExpensesTable = this.renderExpensesTable.bind(this);
   }
-
-  renderFullTable() {}
 
   renderExpensesTable() {
     const { getWalletState } = this.props;
@@ -23,7 +22,7 @@ class Table extends React.Component {
           rawAsk = getAsk.ask;
           ask = (Math.round(ask)) / 100;
           value *= Number.parseFloat(rawAsk);
-          value = (Math.round(value * 100))/100;
+          value = (Math.round(value * 100)) / 100;
         }
         if (getCurrency) {
           getCurrency = getCurrency.name.split('/');
@@ -72,3 +71,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Table);
+
+Table.propTypes = {
+  getWalletState: PropTypes.arrayOf.isRequired,
+};

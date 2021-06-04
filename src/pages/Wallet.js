@@ -33,7 +33,6 @@ class Wallet extends React.Component {
 
   render() {
     const { email, currentCurrency } = this.props;
-
     return (
       <>
         <header>
@@ -65,4 +64,5 @@ export default connect(mapStateToProps)(Wallet);
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   currentCurrency: PropTypes.string.isRequired,
+  expensesList: PropTypes.arrayOf.isRequired,
 };
