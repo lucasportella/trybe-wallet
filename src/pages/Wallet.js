@@ -18,7 +18,15 @@ class Wallet extends React.Component {
     if (expensesList.length > 0) {
       total = expensesList.map((expense) => {
         const expenseNumber = Number.parseFloat(expense.value);
-        total += expenseNumber;
+        const selectedCurrency = (expense.exchangeRates[expense.currency]);
+        let ask = selectedCurrency;
+        if (ask) {
+          ask = ask.ask;
+          console.log(ask)
+          total += (expenseNumber * ask) * 100;
+          total = Math.round(total);
+          return (total / 100);
+        }
         return total;
       });
       total = total[total.length - 1];
