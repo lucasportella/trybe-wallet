@@ -15,7 +15,7 @@ class Table extends React.Component {
       return getWalletState.map((expense) => {
         let getCurrency = expense.exchangeRates[expense.currency];
         const getAsk = expense.exchangeRates[expense.currency];
-        let ask = 'Loading...';
+        let ask = '';
         let value = Number.parseFloat(expense.value);
         let rawAsk = '';
         if (getAsk) {
@@ -26,8 +26,7 @@ class Table extends React.Component {
           value = (Math.round(value * 100))/100;
         }
         if (getCurrency) {
-          getCurrency = getCurrency.name;
-          getCurrency = getCurrency.split('/');
+          getCurrency = getCurrency.name.split('/');
           getCurrency = [getCurrency[0]]; // array destructuring
         }
         return (
