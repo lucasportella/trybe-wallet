@@ -250,8 +250,8 @@ describe('2 - Crie uma página para sua carteira com as seguintes característic
       expect(screen.getAllByRole('cell', { name: 'Cartão de crédito' })[0]).toBeInTheDocument();
       expect(screen.getAllByRole('cell', { name: '10' })[0]).toBeInTheDocument();
       expect(screen.getAllByRole('cell', { name: 'Dólar Comercial' })[0]).toBeInTheDocument();
-      // expect(screen.getAllByRole('cell', { name: '5.58' })[0]).toBeInTheDocument();
-      // expect(screen.getAllByRole('cell', { name: '55.75' })[0]).toBeInTheDocument();
+      expect(screen.getAllByRole('cell', { name: '5.58' })[0]).toBeInTheDocument();
+      expect(screen.getAllByRole('cell', { name: '55.75' })[0]).toBeInTheDocument();
       // expect(screen.getAllByRole('cell', { name: 'Real' })[0]).toBeInTheDocument();
   
       // expect(screen.getAllByRole('cell', { name: 'Vinte euros' })[0]).toBeInTheDocument();

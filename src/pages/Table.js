@@ -17,7 +17,8 @@ class Table extends React.Component {
         const getAsk = expense.exchangeRates[expense.currency];
         let ask = 'Loading...';
         if (getAsk) {
-          ask = getAsk.ask;
+          ask = getAsk.ask * 100;
+          ask = (Math.round(ask)) / 100;
         }
         if (getCurrency) {
           getCurrency = getCurrency.name;
