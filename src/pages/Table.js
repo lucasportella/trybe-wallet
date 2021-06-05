@@ -19,7 +19,6 @@ class Table extends React.Component {
   handleEditExpense(id) {
     const { editExpenseAction } = this.props;
     editExpenseAction(id);
-    console.log('aaa')
   }
 
   renderExpensesTable() {
@@ -65,7 +64,7 @@ class Table extends React.Component {
                 data-testid="edit-btn"
                 onClick={ () => this.handleEditExpense(expense.id) }
               >
-                Editar despesa
+                Edit
               </button>
             </td>
           </tr>

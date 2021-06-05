@@ -3,7 +3,8 @@ import {
   EXPENSE_SUBMIT,
   CURRENT_EXCHANGE,
   DELETE_EXPENSE,
-  EDIT_EXPENSE }
+  EDIT_EXPENSE,
+  CONFIRM_EDIT }
   from '../actions/index';
 
 const INITIAL_STATE = {
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
   expenses: [],
   currentCurrency: 'BRL',
   editMode: false,
+  editExpenseId: '',
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -28,7 +30,16 @@ function wallet(state = INITIAL_STATE, action) {
     return { ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.id) };
   case EDIT_EXPENSE:
-    return { ...state, editMode: true };
+    return { ...state, editMode: true, editExpenseId: action.id };
+  case CONFIRM_EDIT:
+    return {
+      ...state,
+      editMode: false,
+      expenses: state.expenses.map((expense) => {
+        if (expense.id === state.editExpenseId) {
+          return action.expense;
+        } return expense;
+      }) };
   default:
     return state;
   }

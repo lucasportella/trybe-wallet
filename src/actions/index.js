@@ -30,6 +30,13 @@ export const editExpense = (id) => ({
   id,
 });
 
+export const CONFIRM_EDIT = 'CONFIRM_EDIT';
+export const confirmEdit = (id, expense) => ({
+  type: CONFIRM_EDIT,
+  id,
+  expense,
+});
+
 export const thunker = () => async (dispatch) => {
   try {
     const coins = await fetchAPI();

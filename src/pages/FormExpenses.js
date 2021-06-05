@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchAPI from '../services/fetchAPI';
-import { expenseSubmit, thunker } from '../actions/index';
+import { expenseSubmit, thunker, confirmEdit } from '../actions/index';
 
 class FormExpenses extends React.Component {
   constructor() {
@@ -72,11 +72,28 @@ class FormExpenses extends React.Component {
     }));
   }
 
+  async handleConfirmEdit(editId) {
+    const { confirmEditAction } = this.props;
+    const { expense } = this.state;
+    const editExpense = expense;
+    editExpense.id = editId;
+    const coins = await fetchAPI();
+    editExpense.exchangeRates = coins;
+    confirmEditAction(editId, editExpense);
+
+    confirmEditAction(editId);
+  }
+
   handleEditMode() {
-    const { editMode } = this.props;
+    const { editMode, editExpenseId } = this.props;
     if (editMode) {
       return (
-        <button type="button">Editar gasto</button>
+        <button
+          onClick={ () => this.handleConfirmEdit(editExpenseId) }
+          type="button"
+        >
+          Editar Despesa
+        </button>
       );
     }
     return (
@@ -175,6 +192,7 @@ class FormExpenses extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   expenseSubmitAction: (state) => dispatch(expenseSubmit(state)),
   thunkerAction: () => dispatch(thunker()),
+  confirmEditAction: (id, expense) => dispatch(confirmEdit(id, expense)),
 });
 
 const mapStateToProps = (state) => ({
