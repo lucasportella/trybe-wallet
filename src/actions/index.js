@@ -24,6 +24,12 @@ export const deleteExpense = (id) => ({
   id,
 });
 
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const editExpense = (id) => ({
+  type: EDIT_EXPENSE,
+  id,
+});
+
 export const thunker = () => async (dispatch) => {
   try {
     const coins = await fetchAPI();

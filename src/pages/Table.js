@@ -1,18 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense } from '../actions/index';
+import { deleteExpense, editExpense } from '../actions/index';
 
 class Table extends React.Component {
   constructor() {
     super();
     this.renderExpensesTable = this.renderExpensesTable.bind(this);
     this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
+    this.handleEditExpense = this.handleEditExpense.bind(this);
   }
 
   handleDeleteExpense(id) {
     const { deleteExpenseAction } = this.props;
     deleteExpenseAction(id);
+  }
+
+  handleEditExpense(id) {
+    const { editExpenseAction } = this.props;
+    editExpenseAction(id);
+    console.log('aaa')
   }
 
   renderExpensesTable() {
@@ -56,6 +63,7 @@ class Table extends React.Component {
               <button
                 type="button"
                 data-testid="edit-btn"
+                onClick={ () => this.handleEditExpense(expense.id) }
               >
                 Editar despesa
               </button>
@@ -94,6 +102,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpenseAction: (id) => dispatch(deleteExpense(id)),
+  editExpenseAction: (id) => dispatch(editExpense(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

@@ -17,6 +17,7 @@ class FormExpenses extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inputDespesaDescricao = this.inputDespesaDescricao.bind(this);
     this.renderCurrencyAndMethod = this.renderCurrencyAndMethod.bind(this);
+    this.handleEditMode = this.handleEditMode.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +70,18 @@ class FormExpenses extends React.Component {
         exchangeRates: '',
       },
     }));
+  }
+
+  handleEditMode() {
+    const { editMode } = this.props;
+    if (editMode) {
+      return (
+        <button type="button">Editar gasto</button>
+      );
+    }
+    return (
+      <button onClick={ this.handleSubmit } type="button">Adicionar despesa</button>
+    );
   }
 
   inputDespesaDescricao(state) {
@@ -153,7 +166,7 @@ class FormExpenses extends React.Component {
           <option value="Transporte">Transporte</option>
           <option value="Saúde">Saúde</option>
         </select>
-        <button onClick={ this.handleSubmit } type="button">Adicionar despesa</button>
+        { this.handleEditMode() }
       </form>
     );
   }
@@ -166,6 +179,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   expensesList: state.wallet.expenses,
+  editMode: state.wallet.editMode,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormExpenses);
