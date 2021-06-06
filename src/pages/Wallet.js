@@ -18,13 +18,10 @@ class Wallet extends React.Component {
         const expenseNumber = Number.parseFloat(expense.value);
         const selectedCurrency = (expense.exchangeRates[expense.currency]);
         let ask = selectedCurrency;
-        if (ask) {
-          ask = ask.ask;
-          total += (expenseNumber * ask) * 100;
-          total = Math.round(total);
-          return (total / 100);
-        }
-        return total;
+        ask = ask.ask;
+        total += (expenseNumber * ask) * 100;
+        total = Math.round(total);
+        return (total / 100);
       });
       total = total[total.length - 1];
     }
@@ -54,7 +51,6 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
-  // total: state.wallet.total,
   currentCurrency: state.wallet.currentCurrency,
   expensesList: state.wallet.expenses,
 });
