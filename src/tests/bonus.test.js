@@ -50,28 +50,28 @@ describe('7 - Crie um botão para editar uma despesa da tabela contendo as segui
       expect(screen.getAllByRole('cell', { name: '420.41' })[0]).toBeInTheDocument();
       expect(screen.getAllByRole('cell', { name: 'Real' })[0]).toBeInTheDocument();
   
-      // const newExpenses = [
-      //   {
-      //     id: 0,
-      //     value: '100',
-      //     currency: 'CAD',
-      //     method: 'Dinheiro',
-      //     tag: 'Trabalho',
-      //     description: 'Cem dólares canadenses',
-      //     exchangeRates: mockData,
-      //   },
-      //   {
-      //     id: 1,
-      //     value: '20',
-      //     currency: 'EUR',
-      //     method: 'Dinheiro',
-      //     tag: 'Trabalho',
-      //     description: 'Vinte euros',
-      //     exchangeRates: mockData,
-      //   },
-      // ];
+      const newExpenses = [
+        {
+          id: 0,
+          value: '100',
+          currency: 'CAD',
+          method: 'Dinheiro',
+          tag: 'Trabalho',
+          description: 'Cem dólares canadenses',
+          exchangeRates: mockData,
+        },
+        {
+          id: 1,
+          value: '20',
+          currency: 'EUR',
+          method: 'Dinheiro',
+          tag: 'Trabalho',
+          description: 'Vinte euros',
+          exchangeRates: mockData,
+        },
+      ];
   
-      // expect(store.getState().wallet.expenses).toStrictEqual(newExpenses);
+      expect(store.getState().wallet.expenses).toStrictEqual(newExpenses);
     });
   });
   

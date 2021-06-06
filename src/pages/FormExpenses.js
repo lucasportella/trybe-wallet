@@ -18,6 +18,7 @@ class FormExpenses extends React.Component {
     this.inputDespesaDescricao = this.inputDespesaDescricao.bind(this);
     this.renderCurrencyAndMethod = this.renderCurrencyAndMethod.bind(this);
     this.handleEditMode = this.handleEditMode.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
   componentDidMount() {
@@ -53,11 +54,8 @@ class FormExpenses extends React.Component {
     }));
   }
 
-  handleSubmit() {
-    const { expenseSubmitAction, thunkerAction } = this.props;
+  resetState() {
     const { expense } = this.state;
-    expenseSubmitAction(expense);
-    thunkerAction();
     this.setState((oldState) => ({
       ...oldState,
       expense: {
@@ -72,21 +70,29 @@ class FormExpenses extends React.Component {
     }));
   }
 
+  handleSubmit() {
+    const { expenseSubmitAction, thunkerAction } = this.props;
+    const { expense } = this.state;
+    expenseSubmitAction(expense);
+    thunkerAction();
+    this.resetState();
+  }
+
   async handleConfirmEdit(editId) {
-    const { confirmEditAction } = this.props;
+    const { confirmEditAction, expensesList } = this.props;
+    const editExpenseHandler = expensesList.find((expense) => expense.id === editId);
     const { expense } = this.state;
     const editExpense = expense;
-    editExpense.id = editId;
-    const coins = await fetchAPI();
-    editExpense.exchangeRates = coins;
+    editExpense.id = editExpenseHandler.id;
+    editExpense.exchangeRates = editExpenseHandler.exchangeRates;
     confirmEditAction(editId, editExpense);
-
-    confirmEditAction(editId);
+    this.resetState();
   }
 
   handleEditMode() {
-    const { editMode, editExpenseId } = this.props;
+    const { editMode } = this.props;
     if (editMode) {
+      const { editExpenseId } = this.props;
       return (
         <button
           onClick={ () => this.handleConfirmEdit(editExpenseId) }
@@ -196,7 +202,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
+  expensesList: state.wallet.expenses,
   editMode: state.wallet.editMode,
+  editExpenseId: state.wallet.editExpenseId,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormExpenses);
@@ -207,6 +215,7 @@ FormExpenses.propTypes = {
   confirmEditAction: PropTypes.func.isRequired,
   editMode: PropTypes.bool,
   editExpenseId: PropTypes.number,
+  expensesList: PropTypes.arrayOf.isRequired,
 };
 
 FormExpenses.defaultProps = {
