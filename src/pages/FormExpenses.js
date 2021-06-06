@@ -70,11 +70,12 @@ class FormExpenses extends React.Component {
     }));
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     const { expenseSubmitAction, thunkerAction } = this.props;
     const { expense } = this.state;
+    const coins = await thunkerAction();
+    expense.exchangeRates = coins;
     expenseSubmitAction(expense);
-    thunkerAction();
     this.resetState();
   }
 

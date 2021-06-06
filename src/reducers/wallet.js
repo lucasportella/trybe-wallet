@@ -20,12 +20,7 @@ function wallet(state = INITIAL_STATE, action) {
   case EXPENSE_SUBMIT:
     return { ...state, expenses: [...state.expenses, action.expense] };
   case CURRENT_EXCHANGE:
-    return { ...state,
-      expenses: [...state.expenses].map((expense) => {
-        if (expense.exchangeRates !== '') {
-          return expense;
-        } return { ...expense, exchangeRates: action.exchange };
-      }) };
+    return { ...state, currencies: action.exchange };
   case DELETE_EXPENSE:
     return { ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.id) };

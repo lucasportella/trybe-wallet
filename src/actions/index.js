@@ -40,7 +40,8 @@ export const confirmEdit = (id, expense) => ({
 export const thunker = () => async (dispatch) => {
   try {
     const coins = await fetchAPI();
-    return dispatch(getCurrentExchange(coins));
+    dispatch(getCurrentExchange(coins));
+    return coins;
   } catch (error) {
     console.log(error);
   }

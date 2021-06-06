@@ -23,53 +23,47 @@ class Table extends React.Component {
 
   renderExpensesTable() {
     const { getWalletState } = this.props;
-    if (getWalletState) {
-      return getWalletState.map((expense) => {
-        let getCurrency = expense.exchangeRates[expense.currency];
-        const getAsk = expense.exchangeRates[expense.currency];
-        let ask = '';
-        let value = Number.parseFloat(expense.value);
-        let rawAsk = '';
-        if (getAsk) {
-          ask = getAsk.ask * 100;
-          rawAsk = getAsk.ask;
-          ask = Math.round(ask) / 100;
-          value *= Number.parseFloat(rawAsk);
-          value = Math.round(value * 100) / 100;
-        }
-        if (getCurrency) {
-          getCurrency = [getCurrency.name.split('/')[0]]; // array destructuring
-        }
-        return (
-          <tr key={ expense.id }>
-            <td>{expense.description}</td>
-            <td>{expense.tag}</td>
-            <td>{expense.method}</td>
-            <td>{expense.value}</td>
-            <td>{getCurrency}</td>
-            <td>{ask}</td>
-            <td>{value}</td>
-            <td>Real</td>
-            <td>
-              <button
-                type="button"
-                onClick={ () => this.handleDeleteExpense(expense.id) }
-                data-testid="delete-btn"
-              >
-                Deletar
-              </button>
-              <button
-                type="button"
-                data-testid="edit-btn"
-                onClick={ () => this.handleEditExpense(expense.id) }
-              >
-                Edit
-              </button>
-            </td>
-          </tr>
-        );
-      });
-    }
+    return getWalletState.map((expense) => {
+      let getCurrency = expense.exchangeRates[expense.currency];
+      const getAsk = expense.exchangeRates[expense.currency];
+      let ask = '';
+      let value = Number.parseFloat(expense.value);
+      let rawAsk = '';
+      ask = getAsk.ask * 100;
+      rawAsk = getAsk.ask;
+      ask = Math.round(ask) / 100;
+      value *= Number.parseFloat(rawAsk);
+      value = Math.round(value * 100) / 100;
+      getCurrency = [getCurrency.name.split('/')[0]]; // array destructuring
+      return (
+        <tr key={ expense.id }>
+          <td>{expense.description}</td>
+          <td>{expense.tag}</td>
+          <td>{expense.method}</td>
+          <td>{expense.value}</td>
+          <td>{getCurrency}</td>
+          <td>{ask}</td>
+          <td>{value}</td>
+          <td>Real</td>
+          <td>
+            <button
+              type="button"
+              onClick={ () => this.handleDeleteExpense(expense.id) }
+              data-testid="delete-btn"
+            >
+              Deletar
+            </button>
+            <button
+              type="button"
+              data-testid="edit-btn"
+              onClick={ () => this.handleEditExpense(expense.id) }
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      );
+    });
   }
 
   render() {
