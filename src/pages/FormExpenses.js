@@ -81,7 +81,6 @@ class FormExpenses extends React.Component {
 
   async handleConfirmEdit(editId) {
     const { confirmEditAction, expensesList } = this.props;
-    console.log(expensesList);
     const editExpenseHandler = expensesList.find((expense) => expense.id === editId);
     const { expense } = this.state;
     const editExpense = expense;
