@@ -31,9 +31,9 @@ class Table extends React.Component {
       let rawAsk = '';
       ask = getAsk.ask * 100;
       rawAsk = getAsk.ask;
-      ask = Math.round(ask) / 100;
+      ask = (Math.round(ask) / 100).toFixed(2);
       value *= Number.parseFloat(rawAsk);
-      value = Math.round(value * 100) / 100;
+      value = (Math.round(value * 100) / 100);
       getCurrency = [getCurrency.name.split('/')[0]]; // array destructuring
       return (
         <tr key={ expense.id }>
