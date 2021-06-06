@@ -57,13 +57,13 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(Wallet);
 
-Wallet.propTypes = {
-  email: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.string,
-  expensesList: PropTypes.oneOf([PropTypes.arrayOf, PropTypes.func]),
-};
+// Wallet.propTypes = {
+//   email: PropTypes.string.isRequired,
+//   currentCurrency: PropTypes.string,
+//   expensesList: PropTypes.oneOf([PropTypes.arrayOf, PropTypes.func]),
+// };
 
-Wallet.defaultProps = {
-  currentCurrency: null,
-  expensesList: [null, null],
-};
+// Wallet.defaultProps = {
+//   currentCurrency: null,
+//   expensesList: [null, null],
+// };

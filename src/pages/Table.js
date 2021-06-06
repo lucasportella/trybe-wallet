@@ -99,8 +99,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
 
-Table.propTypes = {
-  deleteExpenseAction: PropTypes.func.isRequired,
-  getWalletState: PropTypes.arrayOf.isRequired,
-  editExpenseAction: PropTypes.func.isRequired,
-};
+// Table.propTypes = {
+//   deleteExpenseAction: PropTypes.func.isRequired,
+//   getWalletState: PropTypes.arrayOf.isRequired,
+//   editExpenseAction: PropTypes.func.isRequired,
+// };

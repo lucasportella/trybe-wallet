@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   expenses: [],
   currentCurrency: 'BRL',
   editMode: false,
-  editExpenseId: '',
+  editExpenseId: NaN, // jeito mais técnico que achei de passar nas propTypes, se inicializar a variável como string e depois recebe number propType nao passa
 };
 
 function wallet(state = INITIAL_STATE, action) {
