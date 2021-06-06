@@ -54,7 +54,7 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
-  total: state.wallet.total,
+  // total: state.wallet.total,
   currentCurrency: state.wallet.currentCurrency,
   expensesList: state.wallet.expenses,
 });
@@ -63,7 +63,7 @@ export default connect(mapStateToProps)(Wallet);
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
-  currentCurrency: PropTypes.func,
+  currentCurrency: PropTypes.string,
   expensesList: PropTypes.oneOf([PropTypes.arrayOf, PropTypes.func]),
 };
 

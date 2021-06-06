@@ -196,7 +196,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  expensesList: state.wallet.expenses,
   editMode: state.wallet.editMode,
 });
 
@@ -205,4 +204,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(FormExpenses);
 FormExpenses.propTypes = {
   expenseSubmitAction: PropTypes.func.isRequired,
   thunkerAction: PropTypes.func.isRequired,
+  confirmEditAction: PropTypes.func.isRequired,
+  editMode: PropTypes.bool,
+  editExpenseId: PropTypes.number,
+};
+
+FormExpenses.defaultProps = {
+  editExpenseId: PropTypes.string,
+  editMode: null,
 };

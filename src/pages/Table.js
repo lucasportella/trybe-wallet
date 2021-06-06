@@ -38,8 +38,7 @@ class Table extends React.Component {
           value = Math.round(value * 100) / 100;
         }
         if (getCurrency) {
-          getCurrency = getCurrency.name.split('/');
-          getCurrency = [getCurrency[0]]; // array destructuring
+          getCurrency = [getCurrency.name.split('/')[0]]; // array destructuring
         }
         return (
           <tr key={ expense.id }>
@@ -109,4 +108,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Table);
 Table.propTypes = {
   deleteExpenseAction: PropTypes.func.isRequired,
   getWalletState: PropTypes.arrayOf.isRequired,
+  editExpenseAction: PropTypes.func.isRequired,
 };
