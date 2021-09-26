@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense, editExpense } from '../actions/index';
+import { deleteExpense, editExpense, getCurrentExchange } from '../actions/index';
 
 class Table extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.editButtonShouldExist = this.editButtonShouldExist.bind(this);
     this.renderExpensesTable = this.renderExpensesTable.bind(this);
     this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
     this.handleEditExpense = this.handleEditExpense.bind(this);
+    this.deleteButtonShouldExist = this.deleteButtonShouldExist.bind(this);
   }
 
   handleDeleteExpense(id) {
@@ -16,9 +18,40 @@ class Table extends React.Component {
     deleteExpenseAction(id);
   }
 
-  handleEditExpense(id) {
-    const { editExpenseAction } = this.props;
-    editExpenseAction(id);
+  handleEditExpense(expense) {
+    const { editExpenseAction, getCurrentExchangeAction } = this.props;
+    editExpenseAction(expense);
+    getCurrentExchangeAction(expense.exchangeRates);
+  }
+
+  deleteButtonShouldExist(expense) {
+    const { editMode } = this.props;
+    if (!editMode) {
+      return (
+        <button
+          type="button"
+          onClick={ () => this.handleDeleteExpense(expense.id) }
+          data-testid="delete-btn"
+        >
+          {' '}
+          Deletar
+          {' '}
+        </button>);
+    }
+  }
+
+  editButtonShouldExist(expense) {
+    const { editMode } = this.props;
+    if (!editMode) {
+      return (
+        <button
+          type="button"
+          data-testid="edit-btn"
+          onClick={ () => this.handleEditExpense(expense) }
+        >
+          Edit
+        </button>);
+    }
   }
 
   renderExpensesTable() {
@@ -46,20 +79,8 @@ class Table extends React.Component {
           <td>{value}</td>
           <td>Real</td>
           <td>
-            <button
-              type="button"
-              onClick={ () => this.handleDeleteExpense(expense.id) }
-              data-testid="delete-btn"
-            >
-              Deletar
-            </button>
-            <button
-              type="button"
-              data-testid="edit-btn"
-              onClick={ () => this.handleEditExpense(expense.id) }
-            >
-              Edit
-            </button>
+            { this.deleteButtonShouldExist(expense) }
+            { this.editButtonShouldExist(expense)}
           </td>
         </tr>
       );
@@ -71,15 +92,15 @@ class Table extends React.Component {
       <table>
         <thead>
           <tr>
-            <td>Descrição</td>
-            <td>Tag</td>
-            <td>Método de pagamento</td>
-            <td>Valor</td>
-            <td>Moeda</td>
-            <td>Câmbio utilizado</td>
-            <td>Valor convertido</td>
-            <td>Moeda de conversão</td>
-            <td>Editar/Excluir</td>
+            <th>Descrição</th>
+            <th>Tag</th>
+            <th>Método de pagamento</th>
+            <th>Valor</th>
+            <th>Moeda</th>
+            <th>Câmbio utilizado</th>
+            <th>Valor convertido</th>
+            <th>Moeda de conversão</th>
+            <th>Editar/Excluir</th>
           </tr>
         </thead>
         <tbody>{this.renderExpensesTable()}</tbody>
@@ -90,11 +111,15 @@ class Table extends React.Component {
 
 const mapStateToProps = (state) => ({
   getWalletState: state.wallet.expenses,
+  storeCurrencies: state.wallet.currencies,
+  editIndex: state.wallet.editIndex,
+  editMode: state.wallet.editMode,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpenseAction: (id) => dispatch(deleteExpense(id)),
   editExpenseAction: (id) => dispatch(editExpense(id)),
+  getCurrentExchangeAction: (coins) => dispatch(getCurrentExchange(coins)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
@@ -112,4 +137,6 @@ Table.propTypes = {
     }).isRequired,
   ).isRequired,
   editExpenseAction: PropTypes.func.isRequired,
+  getCurrentExchangeAction: PropTypes.func.isRequired,
+  editMode: PropTypes.bool.isRequired,
 };

@@ -12,7 +12,8 @@ const INITIAL_STATE = {
   expenses: [],
   currentCurrency: 'BRL',
   editMode: false,
-  editExpenseId: NaN, // jeito mais técnico que achei de passar nas propTypes, se inicializar a variável como string e depois recebe number propType nao passa
+  editIndex: NaN,
+  editExpense: {},
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -25,13 +26,17 @@ function wallet(state = INITIAL_STATE, action) {
     return { ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.id) };
   case EDIT_EXPENSE:
-    return { ...state, editMode: true, editExpenseId: action.id };
+    return {
+      ...state,
+      editMode: true,
+      editIndex: action.expense.id,
+      editExpense: action.expense };
   case CONFIRM_EDIT:
     return {
       ...state,
       editMode: false,
       expenses: state.expenses.map((expense) => {
-        if (expense.id === state.editExpenseId) {
+        if (expense.id === action.id) {
           return action.expense;
         } return expense;
       }) };

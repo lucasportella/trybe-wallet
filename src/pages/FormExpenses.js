@@ -11,18 +11,36 @@ class FormExpenses extends React.Component {
       isFetched: false,
       coins: [],
     };
-
     this.doFetch = this.doFetch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inputDespesaDescricao = this.inputDespesaDescricao.bind(this);
-    this.renderCurrencyAndMethod = this.renderCurrencyAndMethod.bind(this);
+    this.renderCurrenciesAndMethod = this.renderCurrenciesAndMethod.bind(this);
     this.handleEditMode = this.handleEditMode.bind(this);
     this.resetState = this.resetState.bind(this);
+    this.retrieveEditExpenseState = this.retrieveEditExpenseState.bind(this);
   }
 
   componentDidMount() {
     this.doFetch();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { editMode, editExpense } = this.props;
+    if (editMode && prevProps.editExpense !== editExpense) {
+      this.retrieveEditExpenseState();
+    }
+  }
+
+  retrieveEditExpenseState() {
+    const { editExpense } = this.props;
+    this.setState((oldState) => ({
+      ...oldState,
+      shouldLoop: false,
+      expense: {
+        ...editExpense,
+      },
+    }));
   }
 
   async doFetch() {
@@ -33,6 +51,7 @@ class FormExpenses extends React.Component {
       ...oldState,
       coins: formattedResult,
       isFetched: true,
+      shouldLoop: true,
       expense: {
         id: 0,
         value: 0,
@@ -54,18 +73,13 @@ class FormExpenses extends React.Component {
     }));
   }
 
-  resetState() {
+  resetState(editId) {
     const { expense } = this.state;
     this.setState((oldState) => ({
       ...oldState,
       expense: {
-        id: expense.id + 1,
-        value: 0,
-        currency: 'USD',
-        method: 'dinheiro',
-        tag: 'alimentacao',
-        description: '',
-        exchangeRates: '',
+        ...oldState.expense,
+        id: (editId ? expense.id + editId : expense.id + 1),
       },
     }));
   }
@@ -74,29 +88,25 @@ class FormExpenses extends React.Component {
     const { expenseSubmitAction, thunkerAction } = this.props;
     const { expense } = this.state;
     const coins = await thunkerAction();
-    expense.exchangeRates = coins;
-    expenseSubmitAction(expense);
+    expenseSubmitAction({ ...expense, exchangeRates: coins });
     this.resetState();
   }
 
-  async handleConfirmEdit(editId) {
-    const { confirmEditAction, expensesList } = this.props;
-    const editExpenseHandler = expensesList.find((expense) => expense.id === editId);
+  async handleConfirmEdit() {
+    const { confirmEditAction, editExpense } = this.props;
     const { expense } = this.state;
-    const editExpense = expense;
-    editExpense.id = editExpenseHandler.id;
-    editExpense.exchangeRates = editExpenseHandler.exchangeRates;
-    confirmEditAction(editId, editExpense);
+    const propExchangeRate = editExpense.exchangeRates;
+    confirmEditAction(editExpense.id,
+      { ...expense, exchangeRates: propExchangeRate });
     this.resetState();
   }
 
   handleEditMode() {
     const { editMode } = this.props;
     if (editMode) {
-      const { editExpenseId } = this.props;
       return (
         <button
-          onClick={ () => this.handleConfirmEdit(editExpenseId) }
+          onClick={ () => this.handleConfirmEdit() }
           type="button"
         >
           Editar Despesa
@@ -112,11 +122,11 @@ class FormExpenses extends React.Component {
     const { expense } = state;
     return (
       <>
-        <label htmlFor="input-despesa">
-          Adicionar valor da despesa:
+        <label htmlFor="Valor">
+          Valor
           <input
             data-testid="value-input"
-            id="input-despesa"
+            id="Valor"
             type="number"
             name="value"
             value={ expense.value }
@@ -137,59 +147,68 @@ class FormExpenses extends React.Component {
     );
   }
 
-  renderCurrencyAndMethod() {
+  renderCurrenciesAndMethod() {
     const { coins, expense: { currency, method } } = this.state;
     return (
       <>
-        <select
-          data-testid="currency-input"
-          id="moeda"
-          name="currency"
-          onChange={ this.handleChange }
-          value={ currency }
-        >
-          {coins.map((coin, index) => (
-            <option value={ coin.code } data-testid={ coin.code } key={ index }>
-              {coin.code}
-            </option>
-          ))}
-        </select>
-        <select
-          name="method"
-          value={ method }
-          data-testid="method-input"
-          onChange={ this.handleChange }
-        >
-          <option value="Dinheiro">Dinheiro</option>
-          <option value="Cartão de crédito">Cartão de crédito</option>
-          <option value="Cartão de débito">Cartão de débito</option>
-        </select>
+        <label htmlFor="moeda">
+          Moeda
+          <select
+            data-testid="currency-input"
+            id="moeda"
+            name="currency"
+            onChange={ this.handleChange }
+            value={ currency }
+          >
+            {coins.map((coin, index) => (
+              <option value={ coin.code } data-testid={ coin.code } key={ index }>
+                {coin.code}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="Método de pagamento">
+          Método de pagamento
+          <select
+            data-testid="method-input"
+            name="method"
+            value={ method }
+            id="Método de pagamento"
+            onChange={ this.handleChange }
+          >
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+          </select>
+        </label>
       </>
     );
   }
 
   render() {
     const { isFetched } = this.state;
-    if (!isFetched) {
-      return <div>Carregando...</div>;
-    }
+    if (!isFetched) { return <div>Carregando...</div>; }
     const { expense: { tag } } = this.state;
     return (
       <form>
         { this.inputDespesaDescricao(this.state) }
-        { this.renderCurrencyAndMethod(this.state) }
-        <select
-          value={ tag }
-          name="tag"
-          data-testid="tag-input"
-          onChange={ this.handleChange }
-        >
-          <option value="Alimentação">Alimentação</option>
-          <option value="Lazer">Lazer</option>
-          <option value="Trabalho">Trabalho</option>
-          <option value="Transporte">Transporte</option>
-          <option value="Saúde">Saúde</option>
-        </select>
+        { this.renderCurrenciesAndMethod(this.state) }
+        <label htmlFor="tag">
+          Tag
+          <select
+            data-testid="tag-input"
+            value={ tag }
+            name="tag"
+            id="tag"
+            onChange={ this.handleChange }
+          >
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
+          </select>
+        </label>
         { this.handleEditMode() }
       </form>
     );
@@ -205,7 +224,8 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   expensesList: state.wallet.expenses,
   editMode: state.wallet.editMode,
-  editExpenseId: state.wallet.editExpenseId,
+  editExpense: state.wallet.editExpense,
+  storeCurrencies: state.wallet.currencies,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormExpenses);
@@ -215,20 +235,14 @@ FormExpenses.propTypes = {
   thunkerAction: PropTypes.func.isRequired,
   confirmEditAction: PropTypes.func.isRequired,
   editMode: PropTypes.bool,
-  editExpenseId: PropTypes.number,
-  expensesList: PropTypes.arrayOf(
-    PropTypes.shape({
-      currency: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      exchangeRates: PropTypes.objectOf.isRequired,
-      id: PropTypes.number.isRequired,
-      method: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
+  editExpense: PropTypes.shape({
+    id: PropTypes.number,
+    exchangeRates: PropTypes.shape({
+    }),
+  }),
 };
 
 FormExpenses.defaultProps = {
   editMode: null,
-  editExpenseId: null,
+  editExpense: null,
 };
