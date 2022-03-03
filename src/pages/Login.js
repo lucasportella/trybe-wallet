@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginSubmit } from '../actions/index';
+import wallet from '../wallet.jpg';
 
 class Login extends React.Component {
   constructor() {
@@ -54,38 +55,47 @@ class Login extends React.Component {
       return <Redirect to="/carteira" />;
     }
     return (
-      <form>
-        <label htmlFor="id-email">
-          Email
-          <input
-            data-testid="email-input"
-            id="id-email"
-            type="email"
-            value={ email }
-            onChange={ this.handleChange }
-            name="email"
-          />
-        </label>
-        <label htmlFor="id-senha">
-          Senha
-          <input
-            data-testid="password-input"
-            id="id-senha"
-            type="password"
-            value={ password }
-            onChange={ this.handleChange }
-            name="password"
-          />
-        </label>
-        <button
-          type="button"
-          disabled={ isDisabled }
-          id="btn"
-          onClick={ () => loginSubmitAction(email) }
-        >
-          Entrar
-        </button>
-      </form>
+      <div className="loginForm">
+        <form className="loginBg">
+          <h1 className="title">Trybe Wallet</h1>
+          <img src={ wallet } alt="carteira" className="loginImg" />
+          <label htmlFor="id-email">
+            Email
+            <input
+              placeholder="email"
+              data-testid="email-input"
+              id="id-email"
+              type="email"
+              value={ email }
+              onChange={ this.handleChange }
+              name="email"
+            />
+          </label>
+          <label htmlFor="id-senha">
+            Senha
+            <input
+              placeholder="password"
+              data-testid="password-input"
+              id="id-senha"
+              type="password"
+              value={ password }
+              onChange={ this.handleChange }
+              name="password"
+            />
+          </label>
+          <div className="loginBtnDiv">
+            <button
+              className={ isDisabled ? 'LoginBtn' : 'LoginBtn btnEnabled' }
+              type="button"
+              disabled={ isDisabled }
+              id="btn-entrar"
+              onClick={ () => loginSubmitAction(email) }
+            >
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

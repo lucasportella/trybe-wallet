@@ -1,13 +1,75 @@
+
 body {
+  background-color: #1bbc9b;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+}
+
+body {
+  align-items: center;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
+  text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.loginForm {
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+label {
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: auto;
+  padding: 2%;
+}
+
+input {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: large;
+}
+
+.loginBtnDiv {
+  padding-bottom: 5%;
+}
+
+.LoginBtn {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: large;
+  border-radius: 7px;
+
+}
+
+.btnEnabled {
+  background-color: #17bd4e;
+}
+
+.loginImg {
+  display: flex;
+  margin: auto;
+  width: 30%;
+}
+
+h1 {
+  margin-bottom: 0;
+  text-align: center;
 }
