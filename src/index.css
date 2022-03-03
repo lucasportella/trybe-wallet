@@ -1,11 +1,7 @@
-
 body {
   background-color: #1bbc9b;
   margin: 0;
   padding: 0;
-}
-
-body {
   align-items: center;
   font-family:
     -apple-system,
@@ -56,7 +52,6 @@ input {
   padding: 10px;
   font-size: large;
   border-radius: 7px;
-
 }
 
 .btnEnabled {
