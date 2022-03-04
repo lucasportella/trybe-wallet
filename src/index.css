@@ -64,6 +64,7 @@ body {
   display: flex;
   margin: auto;
   width: 30%;
+  padding-top: 1%;
 }
 
 h1 {

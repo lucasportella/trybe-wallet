@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginSubmit } from '../actions/index';
-import wallet from '../wallet.jpg';
+import wallet from '../wallet.png';
 
 class Login extends React.Component {
   constructor() {
