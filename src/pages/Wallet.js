@@ -29,20 +29,27 @@ class Wallet extends React.Component {
   render() {
     const { email, currentCurrency } = this.props;
     return (
-      <>
-        <header>
-          <span data-testid="email-field">{email}</span>
+      <div className="walletDiv">
+        <header className="walletHeader">
+          <span data-testid="email-field">
+            Usuário:
+            {' '}
+            {email}
+          </span>
           <span data-testid="total-field">
+            Total:
+            {' '}
             { this.calculateTotal() }
           </span>
           <span data-testid="header-currency-field">
             Câmbio atual:
+            {' '}
             { currentCurrency }
           </span>
         </header>
         <FormExpenses />
         <Table />
-      </>
+      </div>
     );
   }
 }

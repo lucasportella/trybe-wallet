@@ -1,3 +1,4 @@
+/* LOGIN SCREEN CSS */
 body {
   background-color: #1bbc9b;
   margin: 0;
@@ -67,4 +68,25 @@ input {
 h1 {
   margin-bottom: 0;
   text-align: center;
+}
+
+/* WALLET CSS */
+.walletDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.walletHeader {
+  background-color: #168039;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+span {
+  margin: 2%;
+  padding: 2%;
+  font-size: larger;
+  border-style: groove;
+  border-radius: 10px;
+  background-color: rgb(85, 200, 162);
 }
