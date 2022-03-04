@@ -29,7 +29,7 @@ body {
   margin: auto;
 }
 
-label {
+.loginLabel {
   font-size: large;
   display: flex;
   flex-direction: column;
@@ -38,10 +38,11 @@ label {
   padding: 2%;
 }
 
-input {
+.inputLogin {
   margin-top: 5px;
   padding: 10px;
   font-size: large;
+  text-align: center;
 }
 
 .loginBtnDiv {
@@ -89,4 +90,66 @@ span {
   border-style: groove;
   border-radius: 10px;
   background-color: rgb(85, 200, 162);
+}
+
+.btn {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: large;
+  border-radius: 7px;
+  background-color: #17bd4e;
+}
+
+.inputWrapper {
+  font-size: large;
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding: 2%;
+  justify-content: space-evenly;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  margin: 10px;
+  font-size: large;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  width: 200%;
+  margin-top: 2%;
+}
+
+.inputValue {
+  width: 80%;
+  text-align: center;
+  height: 50%;
+  margin-top: 2%;
+}
+
+.selectWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.walletLabel {
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  width: 80%;
+}
+
+select {
+  margin-top: 2%;
+  font-size: large;
+  padding: 2%;
+  text-align: center;
 }

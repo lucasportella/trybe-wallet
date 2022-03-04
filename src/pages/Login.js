@@ -59,9 +59,10 @@ class Login extends React.Component {
         <form className="loginBg">
           <h1 className="title">Trybe Wallet</h1>
           <img src={ wallet } alt="carteira" className="loginImg" />
-          <label htmlFor="id-email">
+          <label className="loginLabel" htmlFor="id-email">
             Email
             <input
+              className="inputLogin"
               placeholder="email"
               data-testid="email-input"
               id="id-email"
@@ -71,9 +72,10 @@ class Login extends React.Component {
               name="email"
             />
           </label>
-          <label htmlFor="id-senha">
+          <label htmlFor="id-senha" className="loginLabel">
             Senha
             <input
+              className="inputLogin"
               placeholder="password"
               data-testid="password-input"
               id="id-senha"

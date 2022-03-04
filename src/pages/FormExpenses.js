@@ -106,6 +106,7 @@ class FormExpenses extends React.Component {
     if (editMode) {
       return (
         <button
+          className="btn"
           onClick={ () => this.handleConfirmEdit() }
           type="button"
         >
@@ -114,17 +115,25 @@ class FormExpenses extends React.Component {
       );
     }
     return (
-      <button onClick={ this.handleSubmit } type="button">Adicionar despesa</button>
+      <button
+        className="btn"
+        onClick={ this.handleSubmit }
+        type="button"
+      >
+        Adicionar despesa
+
+      </button>
     );
   }
 
   inputDespesaDescricao(state) {
     const { expense } = state;
     return (
-      <>
-        <label htmlFor="Valor">
+      <div className="inputWrapper">
+        <label htmlFor="Valor" className="inputLabel">
           Valor
           <input
+            className="inputValue"
             data-testid="value-input"
             id="Valor"
             type="number"
@@ -133,9 +142,10 @@ class FormExpenses extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-        <label htmlFor="descricao-despesa">
-          Descrição da despesa:
+        <label htmlFor="descricao-despesa" className="inputLabel">
+          Descrição da despesa
           <textarea
+            className="descriptionTextarea"
             data-testid="description-input"
             id="descricao-despesa"
             name="description"
@@ -143,7 +153,7 @@ class FormExpenses extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-      </>
+      </div>
     );
   }
 
@@ -151,9 +161,10 @@ class FormExpenses extends React.Component {
     const { coins, expense: { currency, method } } = this.state;
     return (
       <>
-        <label htmlFor="moeda">
+        <label htmlFor="moeda" className="walletLabel">
           Moeda
           <select
+            className="walletSelect"
             data-testid="currency-input"
             id="moeda"
             name="currency"
@@ -167,9 +178,10 @@ class FormExpenses extends React.Component {
             ))}
           </select>
         </label>
-        <label htmlFor="Método de pagamento">
+        <label htmlFor="Método de pagamento" className="walletLabel">
           Método de pagamento
           <select
+            className="walletSelect"
             data-testid="method-input"
             name="method"
             value={ method }
@@ -192,23 +204,26 @@ class FormExpenses extends React.Component {
     return (
       <form>
         { this.inputDespesaDescricao(this.state) }
-        { this.renderCurrenciesAndMethod(this.state) }
-        <label htmlFor="tag">
-          Tag
-          <select
-            data-testid="tag-input"
-            value={ tag }
-            name="tag"
-            id="tag"
-            onChange={ this.handleChange }
-          >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
-        </label>
+        <div className="selectWrapper">
+          { this.renderCurrenciesAndMethod(this.state) }
+          <label htmlFor="tag" className="walletLabel">
+            Tag
+            <select
+              className="walletSelect"
+              data-testid="tag-input"
+              value={ tag }
+              name="tag"
+              id="tag"
+              onChange={ this.handleChange }
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </label>
+        </div>
         { this.handleEditMode() }
       </form>
     );
