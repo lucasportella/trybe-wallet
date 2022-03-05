@@ -143,14 +143,20 @@ textarea {
   display: flex;
   flex-direction: column;
   padding: 10px;
+  justify-content: center;
   text-align: center;
   margin: 10px;
   width: 80%;
 }
 
-select {
+.walletSelect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   margin-top: 2%;
   font-size: large;
   padding: 2%;
   text-align: center;
+  width: 70%;
 }
