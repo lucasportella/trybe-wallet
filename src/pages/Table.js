@@ -80,6 +80,8 @@ class Table extends React.Component {
           <td>Real</td>
           <td>
             { this.deleteButtonShouldExist(expense) }
+          </td>
+          <td>
             { this.editButtonShouldExist(expense)}
           </td>
         </tr>
@@ -89,8 +91,8 @@ class Table extends React.Component {
 
   render() {
     return (
-      <table>
-        <thead>
+      <table className="mainTable">
+        <thead className="tableHead">
           <tr>
             <th>Descrição</th>
             <th>Tag</th>
@@ -100,7 +102,8 @@ class Table extends React.Component {
             <th>Câmbio utilizado</th>
             <th>Valor convertido</th>
             <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
+            <th>Excluir</th>
+            <th>Editar</th>
           </tr>
         </thead>
         <tbody>{this.renderExpensesTable()}</tbody>

@@ -1,6 +1,6 @@
 /* LOGIN SCREEN CSS */
 body {
-  background-color: #1bbc9b;
+  background-color: rgb(221, 229, 182);
   margin: 0;
   padding: 0;
   align-items: center;
@@ -79,7 +79,7 @@ h1 {
 }
 
 .walletHeader {
-  background-color: #168039;
+  background-color: rgb(173, 193, 120);
   padding-bottom: 5%;
   padding-top: 5%;
 }
@@ -90,7 +90,8 @@ span {
   font-size: larger;
   border-style: groove;
   border-radius: 10px;
-  background-color: rgb(85, 200, 162);
+  background-color: rgb(40, 54, 24);
+  color: white;
 }
 
 .btn {
@@ -98,7 +99,8 @@ span {
   padding: 10px;
   font-size: large;
   border-radius: 7px;
-  background-color: #17bd4e;
+  background-color: rgb(40, 54, 24);
+  color: white;
 }
 
 .inputWrapper {
@@ -124,6 +126,7 @@ span {
 textarea {
   width: 200%;
   margin-top: 2%;
+  font-size: large;
 }
 
 .inputValue {
@@ -159,4 +162,17 @@ textarea {
   padding: 2%;
   text-align: center;
   width: 70%;
+}
+
+/* EXPENSES TABLE CSS */
+
+.mainTable {
+  margin-top: 4%;
+  margin-bottom: 4%;
+  background-color: rgb(169, 132, 103);
+}
+
+td {
+  border-style: solid;
+  border-width: 1px;
 }
